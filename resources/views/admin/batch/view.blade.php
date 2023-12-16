@@ -26,7 +26,7 @@
                     <tr>
                       <td>{{ $key+1 }}</td>
                       <td>
-                       {{ $student->first_name}}  {{ $student->last_name}}
+                       {{ $student->name}}
                       </td>
 
                     </tr>

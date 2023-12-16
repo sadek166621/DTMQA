@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Admin\Teacher;
-use App\Models\Admin\Student;
+use App\Models\Admin\studentreg;
 use App\Models\Admin\Batch;
 use App\Models\Admin\Batchstudents;
 use Toastr;
@@ -34,7 +34,7 @@ class BatchController extends Controller
     public function create()
     {
         $data['teachers'] = Teacher::latest()->get();
-        $data['students'] = Student::all();
+        $data['students'] = studentreg::all();
         return view('admin.batch.form',$data);
 
     }
@@ -49,10 +49,12 @@ class BatchController extends Controller
     {
         // return $request;
         $validated = $request->validate([
-            'title' => 'required',
-            'student_id' => 'required',
+            'title' => 'required|unique:batches',
+            'student_id' => 'required|unique:batchstudents',
             'teacher_id' => 'required',
-        ]);
+        ], [
+            'student_id.unique' => 'Student Is Already In A Batch',
+             ]);
 
         $batch = Batch::create([
             'title' => $request->title,
@@ -85,8 +87,8 @@ class BatchController extends Controller
     {
         $data['batch'] = Batch::find($id)->latest()->first();
         $data['students'] = DB::table('batchstudents')
-        ->join('students', 'students.id', '=', 'batchstudents.student_id')
-        ->select('students.first_name','students.last_name')
+        ->join('studentregs', 'studentregs.studentid', '=', 'batchstudents.student_id')
+        ->select('studentregs.name')
         ->where('batchstudents.batch_id', $id)
         ->get();
 

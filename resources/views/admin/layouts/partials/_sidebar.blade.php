@@ -61,12 +61,12 @@
                   <p class="ml-1">Teachers</p>
                 </a>
               </li>
-              <li class="nav-item">
+              {{-- <li class="nav-item">
                 <a href="{{ route('admin.student.list') }}" class="nav-link">
                   <i class="fas fa-edit ml-3"></i>
                   <p class="ml-1">Student</p>
                 </a>
-              </li>
+              </li> --}}
               <li class="nav-item">
                 <a href="{{ route('admin.location.list') }}" class="nav-link">
                   <i class="fas fa-map-marker ml-3"></i>

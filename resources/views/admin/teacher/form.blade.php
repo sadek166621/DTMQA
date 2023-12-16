@@ -20,6 +20,16 @@
       <div class="col-md-12">
         <!-- general form elements -->
         <div class="card card-primary">
+          
+          @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
           <!-- /.card-header -->
           <!-- form start -->
           <form action="@isset($teacher){{ route('admin.teacher.update', $teacher->id) }}@else{{ route('admin.teacher.store') }}@endisset"

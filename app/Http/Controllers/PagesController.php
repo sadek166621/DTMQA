@@ -17,7 +17,10 @@ use App\Models\Admin\about;
 use App\Models\Admin\more;
 use App\Models\Admin\onlineclass;
 use App\Models\Admin\course;
+use App\Models\Admin\Batch;
+use App\Models\Admin\Batchstudents;
 use App\Models\Admin\studentreg;
+use App\Models\Admin\Link;
 use App\Models\Weekly;
 use App\Models\Curriculum;
 use App\Models\beteacher;
@@ -336,6 +339,7 @@ class PagesController extends Controller
     }
 
     public function teacherlogin(Request $request){
+        // return $request;
         $visitorinfo=DB::table('teachers')
             ->where('email',$request->name)
             ->first();
@@ -361,6 +365,7 @@ class PagesController extends Controller
         // $data['setting'] = Setting::first();
         $data['courses'] = Cteachers::where('teacher_id',  Session::get('TeacherId'))->get();
         $data['teacher'] = Teacher::where('id', Session::get('TeacherId'))->first();
+        $data['batches'] = Batch::where('teacher_id', Session::get('TeacherId'))->get();
         if($data['teacher']){
             $data['setting'] = Setting::first();
             $data['sliders'] = Slider::where('status', 1)->get();
@@ -368,6 +373,75 @@ class PagesController extends Controller
         return view('frontend.teacher-dashboard', $data);
     }
 }
+
+    public function teacherlogout(){
+        Session::forget('TeacherId');
+        Session::forget('TeacherName');
+        Session::forget('TeacherEmail');
+        Toastr::success('Logout Successfully', 'Logout', ["positionClass" => "toast-top-right"]);
+        return redirect()->route('home');
+    }
+
+    public function assignedstudentlist($id){
+
+        $data['setting'] = Setting::first();
+        $data['sliders'] = Slider::where('status', 1)->get();
+        // $data['views'] = Batchstudents::where('batch_id', $id)->get();
+        $data['views'] = DB::table('batchstudents')
+        ->join('studentregs','studentregs.studentId', '=', 'batchstudents.student_id')
+        ->select('studentregs.*')
+        ->where('batch_id', $id)
+        ->get();
+
+        $data['batches'] = Batch::where('id', $id)->first();
+        return view('frontend.assigned-student-list', $data);
+
+    }
+    public function liveclasseslist($id){
+
+        $data['setting'] = Setting::first();
+        $data['sliders'] = Slider::where('status', 1)->get();
+        $data['views'] = Batch::where('teacher_id',Session::get('TeacherId'))->latest()->get();
+        $data['links'] = Link::where('batch_id',$id)->latest()->get();
+        return view('frontend.live-classes-list', $data);
+    }
+
+    public function liveclasslinkcreate(Request $request){
+        $validated = $request->validate([
+            'link' => 'required',
+        ]);
+        $link = Link::create([
+            'batch_id'=>$request->batch_id,
+            'teacher_id'=>$request->teacher_id,
+            'link'=>$request->link,
+            'date'=>$request->date,
+            'time'=>$request->time,
+            'status'=>$request->status,
+        ]);
+
+        Toastr::success('Live Class Link Create successfully!', 'Success', ["positionClass" => "toast-top-right"]);
+        return back();
+
+    }
+
+    public function hide($id){
+        $link = Link::find($id);
+        $link->status= 0;
+        $link->save();
+        return back();
+    }
+    public function show($id){
+        $link = Link::find($id);
+        $link->status= 1;
+        $link->save();
+        return back();
+    }
+
+
+
+
+
+
     public function teacherjobapply(Request $request){
         $validated = $request->validate([
             'number' => 'required|min:11|max:14',
@@ -438,9 +512,23 @@ class PagesController extends Controller
 
     }
 
+    public function studentloginpanel(){
+        $data['setting'] = Setting::first();
+        $data['sliders'] = Slider::where('status', 1)->get();
+        return view('frontend.student-login-panel', $data);
+    }
+
     public function studentdashboard(){
         $data['setting'] = Setting::first();
         $data['sliders'] = Slider::where('status', 1)->get();
+        $studentid = DB::table('batchstudents')->where('student_id', Session::get('studentId') )->first();
+        if($studentid==!null){
+            $data['lives'] = Link::where('batch_id',$studentid->batch_id)->where('status',1)->get();
+        }
+        else{
+            $data['lives'] = Link::where('batch_id',Session::get('studentId'))->get();
+        }
+        $data['batch'] = Batchstudents::where('student_id', Session::get('studentId'))->first();
         $data['dashboard'] =studentreg::where('studentId', Session::get('studentId'))->first();
 
         return view('frontend.student-dashboard', $data);

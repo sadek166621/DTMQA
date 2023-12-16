@@ -116,13 +116,14 @@ tr:nth-child(odd) {
                                     href="#account-general">General</a>
                                 <a class="list-group-item list-group-item-action" data-toggle="list"
                                     href="#account-change-password">Class Information</a>
+                                    <a class="list-group-item list-group-item-action" data-toggle="list"
+                                    href="#account-info">Batch</a>
                                     <br>
                                     <a class="list-group-item list-group-item-action"
                                     href="{{ route('logout') }}">Logout</a>
                                     <hr>
-                                {{-- <a class="list-group-item list-group-item-action" data-toggle="list"
-                                    href="#account-info">Info</a>
-                                <a class="list-group-item list-group-item-action" data-toggle="list"
+
+                                {{--<a class="list-group-item list-group-item-action" data-toggle="list"
                                     href="#account-social-links">Social links</a>
                                 <a class="list-group-item list-group-item-action" data-toggle="list"
                                     href="#account-connections">Connections</a>
@@ -516,9 +517,9 @@ tr:nth-child(odd) {
                                                     {{ $week }},
                                                 @endforeach
                                             </div>
-                                            <div class="details">
-                                                <strong>Time For Classes:</strong> {{ $dashboard->suitable_time }}.
-                                            </div>
+                                            {{-- <div class="details">
+                                                <strong>:</strong> {{ $dashboard->suitable_time }}.
+                                            </div> --}}
                                             <br>
                                             <h5 style="text-decoration: underline;">Tuition Fee</h5>
                                                     <div class="details">
@@ -528,41 +529,50 @@ tr:nth-child(odd) {
                                         </div>
                                     </section>
                                 </div>
-                                {{-- <div class="tab-pane fade" id="account-info">
+                                <div class="tab-pane fade" id="account-info">
                                     <div class="card-body pb-2">
                                         <div class="form-group">
-                                            <label class="form-label">Bio</label>
-                                            <textarea class="form-control"
-                                                rows="5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nunc arcu, dignissim sit amet sollicitudin iaculis, vehicula id urna. Sed luctus urna nunc. Donec fermentum, magna sit amet rutrum pretium, turpis dolor molestie diam, ut lacinia diam risus eleifend sapien. Curabitur ac nibh nulla. Maecenas nec augue placerat, viverra tellus non, pulvinar risus.</textarea>
+                                            <label class="form-label">Batch Name:</label>
+                                            @if ($batch == !null)
+                                            <strong style="color: black;">{{ $batch->batch->title }}</strong>
+                                            @endif
                                         </div>
-                                        <div class="form-group">
-                                            <label class="form-label">Birthday</label>
-                                            <input type="text" class="form-control" value="May 3, 1995">
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="form-label">Country</label>
-                                            <select class="custom-select">
-                                                <option>USA</option>
-                                                <option selected>Canada</option>
-                                                <option>UK</option>
-                                                <option>Germany</option>
-                                                <option>France</option>
-                                            </select>
-                                        </div>
+
+
+                                       
+                                    
+                                        <table class="newspaper-n">
+                                            {{-- <caption>প্রথম শ্রেণির (রাজস্ব) কর্মচারীদের তালিকা</caption> --}}
+                                            <tbody>
+                                                <tr>
+                                                    <th align="center">SL NO</th>
+                                                    <th align="left">Link</th>
+                                                    <th align="center">Date</th>
+                                                    <th align="center">Time</th>
+                                                </tr>
+                                                @if ( count($lives) > 0)
+                                                @foreach ( $lives as $key=> $live )
+                                                    <tr>
+                                                        <td align="center">{{ $key+1 }}</td>
+                                                        <td align=""><a href="{{  $live->link }}">{{ Str::substr( $live->link, 0, 25) }}..</a></td>
+                                                        <td align="center">{{ $live->date }}</td>
+                                                        <td align="center">{{ $live->time }}</td>
+                                                    </tr>
+                                                    @endforeach
+                                                    @else
+                                                    <tr>
+                                                        <td colspan="4" class="text-center">No Live Class found</td>
+                                                    </tr>
+                                                    @endif
+
+                                            </tbody>
+                                        </table>
+                                       
+                                        
+                                        
+
                                     </div>
-                                    <hr class="border-light m-0">
-                                    <div class="card-body pb-2">
-                                        <h6 class="mb-4">Contacts</h6>
-                                        <div class="form-group">
-                                            <label class="form-label">Phone</label>
-                                            <input type="text" class="form-control" value="+0 (123) 456 7891">
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="form-label">Website</label>
-                                            <input type="text" class="form-control" value>
-                                        </div>
-                                    </div>
-                                </div> --}}
+                                </div>
                                 {{-- <div class="tab-pane fade" id="account-social-links">
                                     <div class="card-body pb-2">
                                         <div class="form-group">

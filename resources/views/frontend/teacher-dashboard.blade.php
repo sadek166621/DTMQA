@@ -22,25 +22,27 @@
                                     <img class="img-thumbnail" src="{{ asset('assets') }}/images/uploads/teachers/{{ $teacher->image }}" width="200px" height="200px">
                             </div>
                             <div class="col-md-9 col-sm-12">
+                                <a href="{{ route('teacher-logout') }}" style="float: right;">Logout</a>
                                 <div class="intro_list">
                                     <h4 class="">{{ $teacher->name }}</h4>
                                     <div class="text-capitalize">
                                         <b>{{ $teacher->designation }}</b>
                                     </div>
                                     <div class="">
-                                        <b> {{ $teacher->department->name }}</b>
                                     </div>
 
                                     <div class="my-2">
                                         {{-- <p class="mb-0"><span class="fa fa-calendar mr-2"></span>  {{ $teacher->join_date }} (Joining date)</p>
                                         <p class="mb-0"><span class="fa fa-user-graduate mr-2"></span>{{ $teacher->edu_qualification }}</p>
                                         <p class="mb-0"><span class="fa fa-history mr-2"></span>{{ $teacher->experience }}</p> --}}
+                                        <p class="mb-0"><span class="fa fa-calendar mr-2"></span>  {{ $teacher->join_date }} (Joining date)</p>
                                         <p class="mb-0"><span class="fa fa-envelope mr-2"></span>{{ $teacher->email }}</p>
                                         <p class="mb-0"><span class="fa fa-phone-square mr-2"></span> {{ $teacher->phone }}</p>
                                     </div>
                                     <div>
                                     </div>
                                 </div>
+
 
 
                             </div>
@@ -80,23 +82,23 @@
                             <th>Batch Name</th>
                             {{-- <th>Department</th>
                             {{-- <th>Designation</th> --}}
-                            <th>Action</th>
+                            <th>View Students</th>
+                            <th>View Live Classes</th>
                         </tr>
                     </thead>
                     <tbody>
-                    {{-- @if (count($teachers) > 0)
-                          @foreach ($teachers as $key => $teacher)
+                    @if (count($batches) > 0)
+                          @foreach ($batches as $key => $batch)
                             <tr>
                                 <td>{{ $key+1 }}</td>
-                                <td>{{ $teacher->name }}</td>
-                                <td>{{ $teacher->department->name }}</td>
-                                <td>{{ $teacher->designation }}</td>
-                                <td><a href="{{ route('teacher.view', $teacher->username) }}">View details</a></td>
+                                <td>{{ $batch->title }}</td>
+                                <td><a href="{{ route('assigned.student.list', $batch->id) }}" >View Students</a></td>
+                                <td><a href="{{ route('live.classes.list', $batch->id) }}" >View Live Classes</a></td>
                             </tr>
                         @endforeach
                     @else
-                        <tr><td colspan="5" class="text-center">No teacher found</td></tr>
-                    @endif --}}
+                        <tr><td colspan="5" class="text-center">No Batch found</td></tr>
+                    @endif
                     </tbody>
                 </table>
 

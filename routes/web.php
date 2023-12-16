@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\OnlineController;
 use App\Http\Controllers\Admin\WeeklyController;
 use App\Http\Controllers\Admin\CourseteachersController;
 use App\Http\Controllers\Admin\BatchController;
+use App\Http\Controllers\Admin\LinkController;
 //APP
 Use App\Http\Controllers\PagesController;
 Use App\Http\Controllers\SocialShareButtonController;
@@ -278,7 +279,14 @@ Route::get('/logout', [PagesController::class, 'logout'])->name('logout');
 Route::get('/student-admission', [PagesController::class, 'studentadmission'])->name('student-admission');
 Route::get('/teacher-dashboard', [PagesController::class, 'teacherdashboard'])->name('teacher-dashboard');
 Route::get('/curriculum', [PagesController::class, 'curriculum'])->name('curriculum');
+Route::get('/teacher-logout', [PagesController::class, 'teacherlogout'])->name('teacher-logout');
+Route::get('/assigned-student-list/{id}', [PagesController::class, 'assignedstudentlist'])->name('assigned.student.list');
+Route::get('/hide/{id}', [PagesController::class, 'hide'])->name('hide');
+Route::get('/show/{id}', [PagesController::class, 'show'])->name('show');
+Route::get('/student-login-panel', [PagesController::class, 'studentloginpanel'])->name('student-login-panel');
+Route::get('/live-classes-list/{id}', [PagesController::class, 'liveclasseslist'])->name('live.classes.list');
 Route::get('/teacher-login-page', [PagesController::class, 'teacherloginpage'])->name('teacher-login-page');
+Route::post('/live-class-link-create', [PagesController::class, 'liveclasslinkcreate'])->name('live-class-link-create');
 Route::post('/teacher-login', [PagesController::class, 'teacherlogin'])->name('teacher-login');
 Route::post('/student-register-form', [StudentController::class, 'studentregisterform'])->name('student-register-form');
 Route::post('/new-student-signup', [StudentController::class, 'newstudentsignup'])->name('new-student-signup');
@@ -286,4 +294,12 @@ Route::get('/how-to-register', [StudentController::class, 'howtoregister'])->nam
 Route::get('/student-signup', [StudentController::class, 'studentsignup'])->name('student-signup');
 Route::post('/student-login', [StudentController::class, 'studentlogin'])->name('student-login');
 Route::get('/division-district/ajax/{division_id}',[PagesController::class,'getdivision'])->name('division.ajax');
+
+Route::get('/link-list', [LinkController::class, 'index'])->name('link-list');
+Route::get('/link-add', [LinkController::class, 'create'])->name('link-add');
+Route::post('/link-submit', [LinkController::class, 'store'])->name('link-store');
+Route::get('/link-edit/{id}', [LinkController::class, 'edit'])->name('link-edit');
+Route::post('/link-update/{id}', [LinkController::class, 'update'])->name('link-update');
+Route::get('/link-delete/{id}', [LinkController::class, 'destroy'])->name('link-delete');
+
 

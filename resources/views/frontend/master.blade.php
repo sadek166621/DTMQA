@@ -126,7 +126,7 @@ var websdevusaecom_script_obj = {"rtl":"","sticky_header":"1"};
         <div class="col-md-3">
             <p style="font-size: small; margin-top: 16px;"><i class="fa fa-envelope" aria-hidden="true"></i> dtmquranacademy@gmail.com <br>
                 <i class="fa fa-globe"></i><a href="https://www.dtmqa.org/"> dtmqa.org </a> <br>
-                <i class="fa fa-facebook"></i><a href="https://www.facebook.com/dtmqa"> www.facebook.com/dtmqa</a> <br>
+                <i class="fab fa-facebook-f"></i><a href="https://www.facebook.com/dtmqa"> www.facebook.com/dtmqa</a> <br>
                 <i class="fa fa-address-book" aria-hidden="true"></i> 01915054987
 			</p>
         </div>

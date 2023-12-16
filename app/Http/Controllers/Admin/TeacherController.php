@@ -54,7 +54,7 @@ class TeacherController extends Controller
             'name' => 'required',
             'department_id' => 'required',
             'image' => 'required',
-            'email' => 'required',
+            'email' => 'required|unique:teachers',
             'password' => 'required|min:6',
             'confirm_password' => 'required|min:6|same:password',
         ]);
@@ -140,7 +140,16 @@ class TeacherController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
+    { 
+        $validated = $request->validate([
+            'name' => 'required',
+            'department_id' => 'required',
+            'image' => 'required',
+            'email' => 'required|unique:teachers',
+            'password' => 'required|min:6',
+            'confirm_password' => 'required|min:6|same:password',
+        ]);
+
         $teacher = Teacher::findOrFail($id);
 
         if($teacher){

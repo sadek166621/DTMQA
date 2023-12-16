@@ -34,6 +34,11 @@
         <div class="card card-primary">
           <!-- /.card-header -->
           <!-- form start -->
+          @if ($errors->any())
+     @foreach ($errors->all() as $error)
+         <div style="color: red">• {{$error}}</div>
+     @endforeach
+        @endif
           <form action="@isset($batch){{ route('admin.batch.update', $batch->id) }}@else{{ route('admin.batch.store') }}@endisset"
             method="post" enctype="multipart/form-data">
             @csrf
@@ -44,7 +49,7 @@
                     <div class="form-group">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Name</label>
-                            <input type="text" name="title" class="form-control" id="exampleInputEmail1" placeholder="Enter Title " @isset($batch) value="{{ $batch->title }}" @endisset required>
+                            <input type="text" name="title" class="form-control" id="exampleInputEmail1" placeholder="Enter Batch Name " @isset($batch) value="{{ $batch->title }}" @endisset required>
                           </div>
                       </div>
                   </div>
@@ -75,7 +80,7 @@
                                   <option value="{{ $student->id }}"
                                      @if($student->id == $bstudents->student_id) selected @endif>{{ $student->name }}</option>
                                 @else
-                                  <option  value="{{ $student->id }}">{{ $student->first_name }} {{ $student->last_name }}</option>
+                                  <option  value="{{ $student->studentId }}">{{ $student->name }}</option>
                                 @endisset
                               @endforeach
                             </select>
