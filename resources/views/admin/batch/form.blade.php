@@ -75,14 +75,17 @@
                         <div class="form-group">
                             <label for="">Student</label>
                             <select class="form-control js-example-basic-multiple" name="student_id[]" multiple="multiple" >
-                              @foreach ($students as $student)
-                                @isset($bstudents)
-                                  <option value="{{ $student->id }}"
-                                     @if($student->id == $bstudents->student_id) selected @endif>{{ $student->name }}</option>
+                             
+                                @isset($batches)
+                                @foreach ( $batches as $batch )
+                                <option value="{{ $batch->studentId }}"  <?php if($batch != null) echo "selected";?>>{{ $batch->name }}</option>
+                                @endforeach
                                 @else
+                                @foreach ($students as $student)
                                   <option  value="{{ $student->studentId }}">{{ $student->name }}</option>
+                                  @endforeach
                                 @endisset
-                              @endforeach
+                              
                             </select>
                           </div>
                       </div>

@@ -12,7 +12,7 @@ class Batchstudents extends Model
 
     public function student()
     {
-        return $this->belongsTo(studentreg::class,'student_id');
+        return $this->belongsTo(studentreg::class,'studentId');
     }
     public function batch()
     {

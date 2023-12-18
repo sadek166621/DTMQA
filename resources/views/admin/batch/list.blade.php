@@ -40,7 +40,7 @@
                        {{ $batch->teacher->name }}
                       </td>
                       <td>
-                        {{-- <a href="{{ route('admin.batch.edit', $batch->id) }}" class="btn btn-info"><i class="fas fa-edit"></i> Edit</a> --}}
+                        <a href="{{ route('admin.batch.edit', $batch->id) }}" class="btn btn-info"><i class="fas fa-edit"></i> Edit</a>
                         <a href="{{ route('admin.batch.view', $batch->id) }}" class="btn btn-success"><i class="fas fa-eye"></i> View</a>
                         <a href="{{ route('admin.batch.delete', $batch->id) }}" class="btn btn-danger"><i class="fas fa-trash"></i> Delete</a>
                       </td>

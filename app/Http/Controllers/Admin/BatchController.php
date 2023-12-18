@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Admin\Teacher;
+use App\Models\Admin\Student;
 use App\Models\Admin\studentreg;
 use App\Models\Admin\Batch;
 use App\Models\Admin\Batchstudents;
@@ -103,17 +104,19 @@ class BatchController extends Controller
      */
     public function edit($id)
    {
-        // $data['teachers'] = Teacher::latest()->get();
-        // $data['students'] = Student::all();
-        // $data['batch'] = Batch::find($id);
-        // // $data['bstudents'] = DB::table('batches')
-        // // ->join('batchstudents', 'batchstudents.student_id', '=', 'batches.id')
-        // // ->select('batchstudents.student_id')
-        // // ->where('batchstudents.batch_id', $id)
-        // // ->get();
+        $data['teachers'] = Teacher::latest()->get();
+        $data['students'] = studentreg::all();
+        $data['batch'] = Batch::find($id);
+        // $data['batches'] = Batchstudents::where('batch_id', $id)->get();
+
+         $data['batches'] = DB::table('batchstudents')
+         ->join('studentregs', 'studentregs.studentId', '=', 'batchstudents.student_id')
+         ->select('studentregs.*')
+         ->where('batchstudents.batch_id', $id)
+        ->get();
         // $bstudents = Batchstudents::where('batch_id', $id)->get();
 
-        // return view('admin.batch.form',$data, compact('bstudents'));
+        return view('admin.batch.form',$data);
     }
 
     /**
@@ -125,7 +128,10 @@ class BatchController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // return $id;
+        $campaing = Batch::find($id);
+
+
     }
 
     /**
