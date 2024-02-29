@@ -17,8 +17,10 @@ use App\Http\Controllers\Admin\WeeklyController;
 use App\Http\Controllers\Admin\CourseteachersController;
 use App\Http\Controllers\Admin\BatchController;
 use App\Http\Controllers\Admin\LinkController;
+use App\Http\Controllers\BkashController;
 //APP
 Use App\Http\Controllers\PagesController;
+Use App\Http\Controllers\ForgetPasswordManager;
 Use App\Http\Controllers\SocialShareButtonController;
 Use App\Http\Controllers\AppAuthController;
 use Illuminate\Support\Facades\Route;
@@ -180,6 +182,19 @@ Route::prefix('admin')->as('admin.')->group(function () {
             Route::get('/edit', [DashboardController::class, 'site_edit'])->name('edit');
             Route::post('/update/{id}', [DashboardController::class, 'site_update'])->name('update');
         });
+        Route::group(['as' => 'message.', 'prefix' => 'message'], function () {
+            Route::get('/message', [DashboardController::class, 'message'])->name('message');
+        });
+
+        Route::group(['as' => 'e-library.', 'prefix' => 'e-library'], function () {
+            Route::get('/list', [DashboardController::class, 'elibrarylist'])->name('list');
+            Route::get('/add', [DashboardController::class, 'elibraryadd'])->name('add');
+            Route::post('/submit', [DashboardController::class, 'elibrarystore'])->name('store');
+            Route::get('/edit/{id}', [DashboardController::class, 'elibraryedit'])->name('edit');
+            Route::post('/update/{id}', [DashboardController::class, 'elibraryupdate'])->name('update');
+            Route::get('/delete/{id}', [DashboardController::class, 'elibrarydestroy'])->name('delete');
+        });
+
         Route::group(['as' => 'about.', 'prefix' => 'about'], function () {
             Route::get('/edit', [AboutController::class, 'site_edit'])->name('edit');
             Route::post('/update/{id}', [AboutController::class, 'site_update'])->name('update');
@@ -192,6 +207,8 @@ Route::prefix('admin')->as('admin.')->group(function () {
             Route::get('/edit', [QurancampusController::class, 'femaleedit'])->name('edit');
             Route::post('/update/{id}', [QurancampusController::class, 'femaleupdate'])->name('update');
         });
+
+
         Route::group(['as' => 'more.', 'prefix' => 'more'], function () {
             Route::get('/more-edit', [MoreController::class, 'edit'])->name('edit');
             Route::post('/update/{id}', [MoreController::class, 'update'])->name('update');
@@ -204,7 +221,9 @@ Route::prefix('admin')->as('admin.')->group(function () {
         Route::group(['as' => 'applied-student.', 'prefix' => 'applied-student'], function () {
             Route::get('/applied-view', [DashboardController::class, 'appliedview'])->name('view');
             Route::get('/applied-details/{id}', [DashboardController::class, 'applieddetails'])->name('details');
-            // Route::post('/update/{id}', [TeacherController::class, 'update'])->name('update');
+            Route::get('/edit/{id}', [DashboardController::class, 'appliededit'])->name('edit');
+            Route::get('/delete/{studentId}', [DashboardController::class, 'applieddelete'])->name('delete');
+            Route::post('/update/{id}', [DashboardController::class, 'appliedupdate'])->name('update');
         });
     });
 
@@ -257,6 +276,7 @@ Route::get('/quran-reading-course-f-a', [PagesController::class, 'quranreadingco
 Route::get('/quranic-arabic-course-f-a', [PagesController::class, 'quranicarabiccoursefa'])->name('quranic-arabic-course-f-a');
 Route::get('/quran-memorization-course-f-a', [PagesController::class, 'quranmemorizationcoursefa'])->name('quran-memorization-course-f-a');
 Route::get('/contact', [PagesController::class, 'contact'])->name('contact');
+Route::post('/new-contact', [PagesController::class, 'newcontact'])->name('new-contact');
 Route::get('/Basics-of-Islam-Campus', [PagesController::class, 'BasicsofIslamCampus'])->name('Basics-of-Islam-Campus');
 Route::get('/Be-Part-of-Us', [PagesController::class, 'BePartofUs'])->name('Be-Part-of-Us');
 
@@ -285,11 +305,25 @@ Route::get('/hide/{id}', [PagesController::class, 'hide'])->name('hide');
 Route::get('/show/{id}', [PagesController::class, 'show'])->name('show');
 Route::get('/student-login-panel', [PagesController::class, 'studentloginpanel'])->name('student-login-panel');
 Route::get('/live-classes-list/{id}', [PagesController::class, 'liveclasseslist'])->name('live.classes.list');
+Route::get('/live-classes-edit/{id}', [PagesController::class, 'liveclassesedit'])->name('live.classes.edit');
 Route::get('/teacher-login-page', [PagesController::class, 'teacherloginpage'])->name('teacher-login-page');
 Route::post('/live-class-link-create', [PagesController::class, 'liveclasslinkcreate'])->name('live-class-link-create');
+Route::post('/live-class-link-update/{id}', [PagesController::class, 'liveclasslinkupdate'])->name('live-class-link-update');
 Route::post('/teacher-login', [PagesController::class, 'teacherlogin'])->name('teacher-login');
+Route::get('/get-course-fee/{courseId}', [PagesController::class, 'getCourseFee']);
+
+Route::get('/all-courses', [PagesController::class, 'allcourses'])->name('all.courses');
+
+Route::get('/e-library', [PagesController::class, 'elibrary'])->name('e.library');
+
+
+
 Route::post('/student-register-form', [StudentController::class, 'studentregisterform'])->name('student-register-form');
 Route::post('/new-student-signup', [StudentController::class, 'newstudentsignup'])->name('new-student-signup');
+
+Route::post('/check-username-availability', [StudentController::class, 'checkUsernameAvailability'])->name('check-username-availability');
+// Route::post('/check-username-availability', 'UserController@checkUsernameAvailability')->name('check-username-availability');
+
 Route::get('/how-to-register', [StudentController::class, 'howtoregister'])->name('how-to-register');
 Route::get('/student-signup', [StudentController::class, 'studentsignup'])->name('student-signup');
 Route::post('/student-login', [StudentController::class, 'studentlogin'])->name('student-login');
@@ -301,5 +335,24 @@ Route::post('/link-submit', [LinkController::class, 'store'])->name('link-store'
 Route::get('/link-edit/{id}', [LinkController::class, 'edit'])->name('link-edit');
 Route::post('/link-update/{id}', [LinkController::class, 'update'])->name('link-update');
 Route::get('/link-delete/{id}', [LinkController::class, 'destroy'])->name('link-delete');
+
+// =======================Forget Password(Mail) Routes===================
+
+Route::get("/forget-password", [ForgetPasswordManager::class, "forgetPassword"])->name("forget.password");
+Route::post("/forget-password", [ForgetPasswordManager::class, "forgetPasswordPost"])->name("forget.password.post");
+Route::get("/reset-password/{token}",[ForgetPasswordManager::class, "resetPassword"])->name("reset.password");
+Route::post("/reset-password", [ForgetPasswordManager::class, "resetPasswordPost"])->name("reset.password.post");
+
+// =============================End========================
+
+// bKash
+Route::post('/bkash/create', [BkashController::class, 'checkout'])->name('bkash.checkout');
+Route::get('/bkash/callback', [BkashController::class, 'callback'])->name('bkash.callback');
+Route::get('/bkash/success', [BkashController::class, 'success'])->name('bkash.success');
+Route::get('/bkash/error', [BkashController::class, 'error'])->name('bkash.error');
+//Payment
+Route::get('/payment/create', [StudentController::class, 'paymentCreate'])->name('payment.create');
+Route::get('/payment/success', [StudentController::class, 'paymentSuccess'])->name('payment.success');
+Route::get('/payment/error', [StudentController::class, 'paymentError'])->name('payment.error');
 
 

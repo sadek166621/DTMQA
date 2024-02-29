@@ -16,14 +16,16 @@ use App\Models\Admin\campusfemale;
 use App\Models\Admin\about;
 use App\Models\Admin\more;
 use App\Models\Admin\onlineclass;
-use App\Models\Admin\course;
+use App\Models\Admin\Course;
 use App\Models\Admin\Batch;
 use App\Models\Admin\Batchstudents;
 use App\Models\Admin\studentreg;
 use App\Models\Admin\Link;
+use App\Models\Admin\Elibrary;
 use App\Models\Weekly;
 use App\Models\Curriculum;
 use App\Models\beteacher;
+use App\Models\ClientContact;
 use App\Models\Admin\Cteachers;
 use App\Models\Division;
 use App\Models\District;
@@ -56,7 +58,17 @@ class PagesController extends Controller
         $data['setting'] = Setting::first();
         $data['notices'] = Notice::where('status', 1)->limit(5)->get();
         $data['news'] = News::where('status', 1)->limit(5)->get();
+        $data['totalStudents'] = DB::table('studentregs')->count();
+        $data['totalcourses'] = DB::table('courses')->count();
+        $data['totalmaleteachers'] = DB::table('teachers')->where('gender',1)->count();
+        $data['totalfemaleteachers'] = DB::table('teachers')->where('gender',2)->count();
         return view('frontend.index', $data);
+    }
+
+    public function getCourseFee($courseId)
+    {
+        $course = Course::find($courseId);
+        return response()->json(['courseFee' => $course->amount]);
     }
 
     public function vicePrincipalMessage()
@@ -293,6 +305,24 @@ class PagesController extends Controller
         $data['sliders'] = Slider::where('status', 1)->get();
         return view('frontend.contact', $data);
     }
+    public function newcontact(Request $request){
+        // return request();
+        $request->validate([
+            'name'=> "required",
+            'email'=> "required",
+            'phone'=> "required|min:11"
+        ]);
+
+        $client = new ClientContact();
+        $client->name = $request->name;
+        $client->email = $request->email;
+        $client->phone = $request->phone;
+        $client->message = $request->message;
+        $client->save();
+        Toastr::success('Message Send Successfully', 'Success', ["positionClass" => "toast-top-right"]);
+        return back();
+
+    }
     public function teacherloginpage(){
         $data['setting'] = Setting::first();
         $data['sliders'] = Slider::where('status', 1)->get();
@@ -404,6 +434,24 @@ class PagesController extends Controller
         $data['views'] = Batch::where('teacher_id',Session::get('TeacherId'))->latest()->get();
         $data['links'] = Link::where('batch_id',$id)->latest()->get();
         return view('frontend.live-classes-list', $data);
+    }
+    public function liveclassesedit($id){
+        // return $id;
+        $data['editlink'] = Link::where('id',$id)->first();
+        return view('frontend.live-classes-edit', $data);
+
+    }
+    public function liveclasslinkupdate(Request $request, $id){
+        $link = Link::find($id);
+        $link->update([
+            'link'=>$request->link,
+            'date'=>$request->date,
+            'time'=>$request->time,
+        ]);
+
+        Toastr::success('link updated successfully!', 'Success', ["positionClass" => "toast-top-right"]);
+
+        return redirect()->route('live.classes.list',  $link->batch_id);
     }
 
     public function liveclasslinkcreate(Request $request){
@@ -554,5 +602,12 @@ class PagesController extends Controller
            $data['curriculum'] = Curriculum::where('status', 1)->get();
             return view('frontend.curriculum',$data);
         }
+        public function allcourses(){
+            return view('frontend.all-courses');
+        }
 
+        public function elibrary(){
+            $data['librarys'] = Elibrary::latest()->get();
+            return view('frontend.e-library',$data);
+        }
 }

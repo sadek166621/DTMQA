@@ -11,7 +11,9 @@ use Carbon\Carbon;
 use Illuminate\Support\Str;
 use App\Models\beteacher;
 use App\Models\Admin\Setting;
+use App\Models\Admin\Batchstudents;
 use Hash;
+use DB;
 class TeacherController extends Controller
 {
     /**
@@ -55,8 +57,8 @@ class TeacherController extends Controller
             'department_id' => 'required',
             'image' => 'required',
             'email' => 'required|unique:teachers',
-            'password' => 'required|min:6',
-            'confirm_password' => 'required|min:6|same:password',
+            'password' => 'required|min:8',
+            'confirm_password' => 'required|min:8|same:password',
         ]);
 
         if (!$request->status || $request->status == NULL) {
@@ -140,15 +142,10 @@ class TeacherController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    { 
-        $validated = $request->validate([
-            'name' => 'required',
-            'department_id' => 'required',
-            'image' => 'required',
-            'email' => 'required|unique:teachers',
-            'password' => 'required|min:6',
-            'confirm_password' => 'required|min:6|same:password',
-        ]);
+    {
+        // $validated = $request->validate([
+        //     'email' => 'unique:teachers',
+        // ]);
 
         $teacher = Teacher::findOrFail($id);
 
@@ -156,6 +153,7 @@ class TeacherController extends Controller
             $validated = $request->validate([
                 'name' => 'required',
                 'department_id' => 'required',
+                'email' => 'unique:teachers',
             ]);
 
             if (!$request->status || $request->status == NULL) {
@@ -224,12 +222,20 @@ class TeacherController extends Controller
      */
     public function destroy($id)
     {
+
+        // $batch = DB::table('batches')->where('teacher_id',$id)->first();
+        // if($batch){
+        //     Batchstudents::where('batch_id',$batch->id)->delete();
+        // }
         $teacher = Teacher::findOrFail($id);
 
         if($teacher){
             $teacher->delete();
             Toastr::success('Teacher deleted successfully!', 'Success', ["positionClass" => "toast-top-right"]);
         }
+
+
+
 
         return back();
     }

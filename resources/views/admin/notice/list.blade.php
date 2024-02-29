@@ -37,18 +37,18 @@
                       <td>{{ $key+1 }}</td>
                       <td>{{ $notice->title }}</td>
                       <td>
-                        <?php 
+                        <?php
                             $description =  strip_tags(html_entity_decode($notice->description));
                             if (strlen($description) > 30) {
 
                                 // truncate string
                                 $stringCut = substr($description, 0, 30);
                                 $endPoint = strrpos($stringCut, ' ');
-                            
+
                                 //if the string doesn't contain any space then it will cut without word basis.
                                 $desc = $endPoint? substr($stringCut, 0, $endPoint) : substr($stringCut, 0);
                                 $desc .= '...';
-                            }                                                            
+                            }
                         ?>
                         @if (strlen($description) > 30)
                             {!! $desc !!}
@@ -110,7 +110,7 @@
       </div>
       <div class="modal-body">
         <div id="noticeDetailsWrapper">
-          
+
         </div>
       </div>
       <div class="modal-footer">

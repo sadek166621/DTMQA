@@ -1,4 +1,4 @@
-<!doctype html>
+{{-- <!doctype html>
 <html lang="en-US">
 <head>
 
@@ -32,6 +32,15 @@ img.emoji {
 	background: none !important;
 	padding: 0 !important;
 }
+@media only screen and (max-width: 768px) {
+  .info-media {
+    display: none;
+  }
+  .slider-media{
+	margin-right: 19px;
+  }
+}
+
 </style>
 	<link rel='stylesheet' id='wp-block-library-css'  href='{{ asset("assets-frontend") }}/css/style.min.css?ver=5.9.7' type='text/css' media='all' />
 <style id='global-styles-inline-css' type='text/css'>
@@ -115,34 +124,34 @@ var websdevusaecom_script_obj = {"rtl":"","sticky_header":"1"};
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-dark-grayscale"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0 0.49803921568627" /><feFuncG type="table" tableValues="0 0.49803921568627" /><feFuncB type="table" tableValues="0 0.49803921568627" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-grayscale"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0 1" /><feFuncG type="table" tableValues="0 1" /><feFuncB type="table" tableValues="0 1" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-purple-yellow"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0.54901960784314 0.98823529411765" /><feFuncG type="table" tableValues="0 1" /><feFuncB type="table" tableValues="0.71764705882353 0.25490196078431" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-blue-red"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0 1" /><feFuncG type="table" tableValues="0 0.27843137254902" /><feFuncB type="table" tableValues="0.5921568627451 0.27843137254902" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-midnight"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0 0" /><feFuncG type="table" tableValues="0 0.64705882352941" /><feFuncB type="table" tableValues="0 1" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-magenta-yellow"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0.78039215686275 1" /><feFuncG type="table" tableValues="0 0.94901960784314" /><feFuncB type="table" tableValues="0.35294117647059 0.47058823529412" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-purple-green"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0.65098039215686 0.40392156862745" /><feFuncG type="table" tableValues="0 1" /><feFuncB type="table" tableValues="0.44705882352941 0.4" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-blue-orange"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0.098039215686275 1" /><feFuncG type="table" tableValues="0 0.66274509803922" /><feFuncB type="table" tableValues="0.84705882352941 0.41960784313725" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><div id="page-websdevusa" class="site-websdevusa no-ecommerce-web">
 	<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
 
-	<div class="container">
-<section id="slider" class="slider">
+	<div class="container"> --}}
+{{-- <section id="slider" class="slider">
     <div class="row">
-        <div class="col-md-9" >
+        {{-- <div class="col-md-9 slider-media" >
             <a href="{{ route('home') }}">
-				<img src="{{ asset('assets') }}/images/uploads/sliders/2023-10-11-6526ac8c39ab1.png" alt="image" style="height:99px;margin-top:7px;width: 100%;margin-left: 10px;" >
+				<img src="{{ asset('assets') }}/images/uploads/sliders/DTMQA.png" alt="image" style="height:99px;margin-top:7px;width: 100%;margin-left: 10px;" >
 			</a>
-         </div>
-        <div class="col-md-3">
+         </div> --}}
+        {{-- <div class="col-md-3 info-media">
             <p style="font-size: small; margin-top: 16px;"><i class="fa fa-envelope" aria-hidden="true"></i> dtmquranacademy@gmail.com <br>
                 <i class="fa fa-globe"></i><a href="https://www.dtmqa.org/"> dtmqa.org </a> <br>
                 <i class="fab fa-facebook-f"></i><a href="https://www.facebook.com/dtmqa"> www.facebook.com/dtmqa</a> <br>
                 <i class="fa fa-address-book" aria-hidden="true"></i> 01915054987
 			</p>
-        </div>
+        </div> --
     </div>
 	<div id="banner" class="banner slider-header">
 		<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
-  	<ol class="carousel-indicators">
+  	{{-- <ol class="carousel-indicators">
 	  	@foreach($sliders as $key => $slider)
 			<!-- <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li> -->
 			<li data-target="#carousel-example-generic" data-slide-to="{{ $key }}" @if($key == 0) class="active" @endif></li>
 		@endforeach
-	</ol>
+	</ol> --}}
 
   <!-- Wrapper for slides -->
-  	<div class="carousel-inner" role="listbox">
+  	{{-- <div class="carousel-inner" role="listbox">
   		<div class="banner-bg">
         </div>
 		<div class="carousel-caption">
@@ -158,7 +167,7 @@ var websdevusaecom_script_obj = {"rtl":"","sticky_header":"1"};
 				<img data-animation="animated zoomIn" src="{{ asset('assets') }}/images/uploads/sliders/{{ $slider->image }}" alt="" style='height:350px;' class="img-responsive"/>
 			</div>
 		@endforeach
-	</div>
+	</div> -
 
   <!-- Controls -->
 <a class="carousel-control-prev" href="#carousel-example-generic" role="button" data-slide="prev">
@@ -219,9 +228,9 @@ var websdevusaecom_script_obj = {"rtl":"","sticky_header":"1"};
 })(jQuery);
 </script>
 	</div>
-</section>
+</section> --}}
 
-@include('frontend.include.header')
+{{-- @include('frontend.include.header')
 
 <!-- #masthead -->
 </div>
@@ -248,7 +257,62 @@ var wpcf7 = {"api":{"root":"https:\/\/ngdc.ac.bd\/wp-json\/","namespace":"contac
   $('#summernote').summernote();
 });
 </script>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 @stack('js')
 </body>
+</html> --}}
+
+
+{{-- ========================Old Master File End ========================== --}}
+
+
+
+<!doctype html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title> DTMQA | Learning Quran At Home</title>
+
+{{-- ============================Fav Icon========================== --}}
+    <link rel="shortcut icon" href="{{asset('assets-new-frontend')}}/assets/images/logo/DTMQA.png" type="image/x-icon">
+    <link rel="shortcut icon" href="{{asset('assets-new-frontend')}}/assets/images/fav.jpg">
+
+    {{-- ===================Fav Icon End========================= --}}
+
+    {{-- ======================Css========================= --}}
+
+    @include('frontend.include.style')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    {{-- ============Css End======================== --}}
+</head>
+
+<body>
+
+    {{-- ====================Header==================== --}}
+    @include('frontend.include.header')
+    {{-- ===============End Header===================== --}}
+
+
+    {{-- ==================Content================= --}}
+    @yield('content')
+    {{-- ===============End Content================= --}}
+
+
+    {{-- ======================Footer====================== --}}
+    @include('frontend.include.footer')
+    {{-- ==========End Footer================ --}}
+
+    {{-- ======================All Script FIle==================== --}}
+    @include('frontend.include.script')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    {!! Toastr::message() !!}
+
+    {{-- ==============End Script================ --}}
+    @stack('js')
+
+</body>
+
+
 </html>

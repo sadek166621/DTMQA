@@ -42,7 +42,7 @@
                       <td>
                         <a href="{{ route('admin.batch.edit', $batch->id) }}" class="btn btn-info"><i class="fas fa-edit"></i> Edit</a>
                         <a href="{{ route('admin.batch.view', $batch->id) }}" class="btn btn-success"><i class="fas fa-eye"></i> View</a>
-                        <a href="{{ route('admin.batch.delete', $batch->id) }}" class="btn btn-danger"><i class="fas fa-trash"></i> Delete</a>
+                        <a href="{{ route('admin.batch.delete', $batch->id) }}" onclick="if (!confirm('Are you sure?')) { return false }" class="btn btn-danger"><i class="fas fa-trash"></i> Delete</a>
                       </td>
                     </tr>
                   @endforeach
@@ -69,5 +69,21 @@
     $(document).ready( function () {
     $('#myTable').DataTable();
 } );
+</script>
+<script>
+    function confirmDelete() {
+        // Display a confirmation dialog
+        var result = confirm("Are you sure you want to delete?");
+        
+        // Check if the user clicked "OK"
+        if (result) {
+            // Perform the delete operation or redirect to the delete route
+            // Example: window.location.href = '/delete';
+            alert("Deleted!");
+        } else {
+            // The user clicked "Cancel" or closed the dialog
+            alert("Deletion canceled!");
+        }
+    }
 </script>
 @endpush

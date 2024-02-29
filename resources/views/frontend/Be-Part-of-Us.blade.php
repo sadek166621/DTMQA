@@ -1,12 +1,12 @@
 @extends('frontend.master')
 @section('content')
-<style>
+ <style>
     /* The Modal (background) */
     .modal {
       display: none; /* Hidden by default */
       position: fixed; /* Stay in place */
       z-index: 1; /* Sit on top */
-      padding-top: 100px; /* Location of the box */
+      padding-top: 150px; /* Location of the box */
       left: 0;
       top: 0;
       width: 100%; /* Full width */
@@ -55,7 +55,7 @@
         background-color: #ccc;
     }
     </style>
-<div id="content-websdevusa" class="site-content-websdevusa space stop ngdc.ac.bd-page content-area">
+{{-- <div id="content-websdevusa" class="site-content-websdevusa space stop ngdc.ac.bd-page content-area">
     <div class="container main-area-bg">
         <div class="row">
             <div class="col-md-9">
@@ -145,7 +145,57 @@
     </div>
 </div>
 </div>
-</section>
+</section>  --}}
+<!--  ************************* Page Title Starts Here ************************** -->
+<div class="page-nav no-margin row">
+    <div class="container">
+        <div class="row">
+            <h2>Dream to Memorize Quran Academy</h2>
+            <p class="mb-3">Learning Quran at Home</p>
+            <ul>
+                <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+                <li><i class="fas fa-angle-double-right"></i> Be Part Of Us</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- ######## Quran Reading Course Kids Information Starts Here ####### -->
+
+<div class="row contact-rooo no-margin">
+    <div class="container">
+        <div style="padding:20px">
+            <h2>Be Part Of Us</h2>
+            <div class="mt-lg-5">
+                1. Be a teacher if you have the required qualification.
+                2. Be a student (you or your family members).
+                3. Be a financial contributor for the sake of Allah.
+                4. Share this noble effort with others and encourage them to be part of it in any way they can.
+                5. Make dua to Allah for the program to flourish and continue till the day of resurrection.
+            </div>
+        </div>
+        <!-- Join Button  -->
+        <div class="text-center">
+            <a class="btn btn-primary py-3 px-5 mt-2" href="{{ route('be-a-teacher') }}">Be A Teacher</a>
+            <a class="btn btn-primary py-3 px-5 mt-2" href="{{ route('student-signup') }}">Be A Student</a>
+            {{-- <a class="btn btn-primary py-3 px-5 mt-2" href="#">Share This Nobel Effort</a> --}}
+            <a class="btn btn-primary py-3 px-5 mt-2" href="{{ route('Donate-Us') }}">Be A Financial Contributor</a>
+            <button type="button" id="myBtn" class="btn btn-primary py-3 px-5 mt-2">Share this Nobel Effot</button>
+        </div>
+    </div>
+</div>
+
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <br>
+      {!! $shareComponent !!}
+    </div>
+
+  </div>
+
 @endsection
 @push('js')
 <script>

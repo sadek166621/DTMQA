@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\BkashController;
 use Illuminate\Http\Request;
 use App\Models\Admin\Student;
 use App\Models\Admin\studentreg;
@@ -26,6 +27,7 @@ class StudentController extends Controller
     public function index()
     {
         $data['students'] = Student::latest()->get();
+
         return view('admin.student.list', $data);
     }
 
@@ -207,47 +209,83 @@ class StudentController extends Controller
         return back();
     }
 
+
     public function studentregisterform(Request $request){
+        // return $request;
+
+        // $validated = $request->validate([
+
+        //     'phone_number' => 'required|unique:studentregs|min:11',
+        //     'whatsapp_number' => 'required|unique:studentregs|min:11',
+        // ]);
 
         // return $request;
 
         // $checkedOptions = $request->input('weeks');
+        // $prefix = 'QA-';
+        // $randomNumber = rand(10000, 99999); // Adjust the range based on your requirements
+        // $uniqueCode = $prefix . $randomNumber;
 
-            studentreg::insert([
-                'studentId'=> $request->studentId,
-                'name' => $request->name,
-                'initial' => $request->initial,
-                'date' => $request->date,
-                'month' => $request->month,
-                'year' => $request->year,
-                'countryplacejoining' => $request->countryplacejoining,
-                'gender' => $request->gender,
-                'fathername' => $request->fathername,
-                'mothername' => $request->mothername,
-                'post_code' => $request->post_code,
-                'thana' => $request->thana,
-                'district_id' => $request->district_id,
-                'division_id' => $request->division_id,
-                'p_postcode' => $request->p_postcode,
-                'P_thana' => $request->P_thana,
-                'p_division_id' => $request->p_division_id,
-                'p_district_id' => $request->p_district_id,
-                'liketostudy' => $request->liketostudy,
-                'cls_per_wk' => $request->cls_per_wk,
-                'weeks' => json_encode($request->weeks),
-                'suitable_time' => $request->suitable_time,
-                'phone_number' => $request->phone_number,
-                'whatsapp_number' => $request->whatsapp_number,
-                'income' => $request->income,
-                'tuition_fee' => $request->tuition_fee,
-                'comments' => $request->comments,
-                'payment_number' => $request->payment_number,
-            ]);
+            // $student = studentreg::create([
+            //     'studentId'=> $request->studentId,
+            //     'name' => $request->name,
+            //     // 'initial' => $request->initial,
+            //     // 'code' => $uniqueCode,
+            //     'date' => $request->date,
+            //     'month' => $request->month,
+            //     'year' => $request->year,
+            //     'countryplacejoining' => $request->countryplacejoining,
+            //     'gender' => $request->gender,
+            //     'fathername' => $request->fathername,
+            //     'mothername' => $request->mothername,
+            //     'post_code' => $request->post_code,
+            //     'thana' => $request->thana,
+            //     'care_of' => $request->care_of,
+            //     'village' => $request->village,
+            //     'district_id' => $request->district_id,
+            //     'division_id' => $request->division_id,
+            //     'liketostudy' => $request->liketostudy,
+            //     'cls_per_wk' => $request->cls_per_wk,
+            //     'weeks' => json_encode($request->weeks),
+            //     'suitable_time' => $request->suitable_time,
+            //     'phone_number' => $request->phone_number,
+            //     'whatsapp_number' => $request->whatsapp_number,
+            //     'income' => $request->income,
+            //     'tuition_fee' => $request->tuition_fee,
+            //     'total_amount' => $request->total_amount,
+            //     'comments' => $request->comments,
+            //     'payment_number' => $request->payment_number,
+            // ]);
+
+            // if($request->check_present_address != Null){
+            //     $student->p_postcode = $request->post_code;
+            //     $student->P_thana = $request->thana;
+            //     $student->p_care_of = $request->care_of;
+            //     $student->p_village = $request->village;
+            //     $student->p_division_id = $request->division_id;
+            //     $student->p_district_id = $request->district_id;
+            //     $student->save();
+            // }
+            // else{
+            //     $student->p_postcode =$request->p_postcode;
+            //     $student->P_thana =$request->P_thana;
+            //     $student->p_care_of =$request->p_care_of;
+            //     $student->p_village =$request->p_village;
+            //     $student->p_division_id =$request->p_division_id;
+            //     $student->p_district_id =$request->p_district_id;
+            //     $student->save();
+            // }
 
 
-        Toastr::success('student Registration successfully!', 'Success', ["positionClass" => "toast-top-right"]);
 
-            return redirect()->route('student.dashboard');
+        // Toastr::success('student Registration successfully!', 'Success', ["positionClass" => "toast-top-right"]);
+
+            //return redirect()->route('student.dashboard');
+            
+        $data['student_id'] = $request->studentId;
+        $data['fee'] = $request->total_amount;
+
+        return $this->paymentCreate($data);
 
 
     }
@@ -267,14 +305,22 @@ class StudentController extends Controller
 
     public function newstudentsignup(Request $request){
         $request->validate([
-            'phone' => 'required|unique:studentsignups|min:11',
-            'email' => 'required|unique:studentsignups|',
+            'phone' => 'required|min:11',
+            'email' => 'required|',
+            'user_name' => 'required|unique:studentsignups|min:6',
             'password' => 'required|min:8',
             'password_confirmation' => 'required|same:password',
 
         ]);
+
+        $prefix = 'QA-';
+        $randomNumber = rand(10000, 99999); // Adjust the range based on your requirements
+        $uniqueCode = $prefix . $randomNumber;
+
         $signup = new Studentsignup();
         $signup->name = $request->name;
+        $signup->user_name = $request->user_name;
+        $signup->code = $uniqueCode;
         $signup->email = $request->email;
         $signup->phone = $request->phone;
         $signup->password = Hash::make($request->password);
@@ -284,12 +330,20 @@ class StudentController extends Controller
         return redirect('/how-to-register');
     }
 
+            public function checkUsernameAvailability(Request $request)
+        {
+            $username = $request->input('username');
+            $isAvailable = !Studentsignup::where('user_name', $username)->exists();
+
+            return response()->json(['available' => $isAvailable]);
+        }
+
     public function studentlogin(Request $request){
 
 
         $visitorinfo=DB::table('studentsignups')
-            ->where('email',$request->name)
-            ->orwhere('phone',$request->name)
+            ->where('user_name',$request->name)
+            ->orwhere('code',$request->name)
             ->first();
         if ($visitorinfo){
             $existingPassword = $visitorinfo->password;
@@ -320,5 +374,50 @@ class StudentController extends Controller
             Toastr::error('Please Check Your Email or Password', 'Error', ["positionClass" => "toast-top-right"]);
             return redirect('/how-to-register');
         }
+    }
+    
+    public function paymentCreate($data)
+    {
+        $bkash = new BkashController;
+        return $bkash->pay($data);
+    }
+    
+    public function paymentSuccess()
+    {
+        //dd(Session::get('invoice_no'));
+        $data['student_id'] = Session::get('student_id');
+        $data['fee'] = Session::get('fee');
+        $data['invoice_no'] = Session::get('invoice_no');
+        $data['setting'] = Setting::first();
+        $data['sliders'] = Slider::where('status', 1)->get();
+        
+        Session::forget('student_id');
+        Session::forget('fee');
+        Session::forget('invoice_no');
+
+        return view('frontend.payment-success', $data);
+    }
+    
+    public function paymentError()
+    {
+        $data['student_id'] = Session::get('student_id');
+        $data['fee'] = Session::get('fee');
+        $data['invoice_no'] = Session::get('invoice_no');
+        $data['message'] = Session::get('message');
+        $data['setting'] = Setting::first();
+        $data['sliders'] = Slider::where('status', 1)->get();
+        
+        $student = studentreg::where('studentId',$data['student_id']);
+
+        if($student){
+            $student->delete();
+        }
+        
+        Session::forget('student_id');
+        Session::forget('fee');
+        Session::forget('invoice_no');
+        Session::forget('message');
+
+        return view('frontend.payment-failed', $data);
     }
 }

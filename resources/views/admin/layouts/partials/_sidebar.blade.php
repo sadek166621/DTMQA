@@ -5,6 +5,7 @@
       <span class="brand-text font-weight-light">DTMQA</span>
     </a>
       <!-- Sidebar Menu -->
+    <div class="sidebar">
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
@@ -226,6 +227,22 @@
               <i class="nav-icon fas fa-mosque"></i>
               <p>
                Weekly Dars
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('admin.e-library.list') }}" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+               E-library List
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('admin.message.message') }}" class="nav-link">
+              <i class="nav-icon fas fa-bell"></i>
+              <p>
+               Message
               </p>
             </a>
           </li>

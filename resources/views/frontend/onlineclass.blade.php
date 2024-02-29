@@ -1,4 +1,4 @@
-@extends('frontend.master')
+{{-- @extends('frontend.master')
 @section('content')
 	<div id="content-websdevusa" class="site-content-websdevusa space stop ngdc.ac.bd-page content-area">
 			<div class="container main-area-bg">
@@ -38,12 +38,12 @@
 						</article>
 
 
-					</div>					
+					</div>
 				<!-- End News section -->
 				<!-- content-left -->
 			<!-- End Column 8 -->
 					@include('frontend.include.side-bar')
-		</div>		
+		</div>
 	</div>
 </section>
 
@@ -87,4 +87,64 @@
 		</div>
 	</div>
 </section>
-	@endsection
+	@endsection --}}
+
+
+    @extends('frontend.master')
+
+    @section('content')
+    <!--  ************************* Page Title Starts Here ************************** -->
+    <div class="page-nav no-margin row">
+        <div class="container">
+            <div class="row">
+                <h2>Dream to Memorize Quran Academy</h2>
+                <p class="mb-3">Learning Quran at Home</p>
+                <ul>
+                    <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+                    <li><i class="fas fa-angle-double-right"></i> Online Class</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ######## Quran Reading Course Kids Information Starts Here ####### -->
+
+    <div class="row contact-rooo no-margin">
+        <div class="container">
+            <div>
+                <h2>Online Class</h2>
+                <div class="mt-lg-5">
+                    <table id="" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">SL</th>
+                                <th scope="col">Class</th>
+                                <th scope="col">Section</th>
+                                <th scope="col">Link</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if(count($onlineclass) > 0)
+											@foreach ($onlineclass as $key => $online)
+												<tr>
+													<td align="center">{{ $key+1 }}</td>
+													<td align="left">{{ $online->class }}</td>
+													<td align="left">{{ $online->section }}</td>
+													<td align="center" class="text-center">
+														@if($online->link)
+                                                        <a href="https://{{ $online->link }}/" class="text-success" target="_blank"><i class="fa fa-link"></i></a>
+														@endif
+													</td>
+												</tr>
+											@endforeach
+										@else
+											<tr><td colspan="4" class="text-center">No Online Class found</td></tr>
+										@endif
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    @endsection

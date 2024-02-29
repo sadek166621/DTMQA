@@ -1,4 +1,4 @@
-@extends('frontend.master')
+{{-- @extends('frontend.master')
 @section('content')
 <div id="content-websdevusa" class="site-content-websdevusa space stop ngdc.ac.bd-page content-area">
     <div class="container main-area-bg">
@@ -80,4 +80,47 @@
 </div>
 </div>
 </section>
+@endsection --}}
+
+@extends('frontend.master')
+@section('content')
+
+
+    <!--  ************************* Page Title Starts Here ************************** -->
+    <div class="page-nav no-margin row">
+        <div class="container">
+            <div class="row">
+                <h2>Dream to Memorize Quran Academy</h2>
+                <p class="mb-3">Learning Quran at Home</p>
+                <ul>
+                    <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+                    <li><i class="fas fa-angle-double-right"></i> Quranic Arabic Course Kids</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ######## Quranic Arabic Course Kids Information Starts Here ####### -->
+
+    <div class="row contact-rooo no-margin">
+        <div class="container">
+            <div style="padding:20px">
+                <h2>Quranic Arabic Course Kids</h2>
+                <div class="mt-lg-5">
+                    {!! $campusfemale->Quranic_Arabic_Course !!}
+
+
+
+                </div>
+            </div>
+            <!-- Join Button  -->
+            <div class="text-center">
+                <a class="btn btn-primary py-3 px-5 mt-2" href="{{ route('curriculum') }}">Curriculum</a>
+                <a class="btn btn-primary py-3 px-5 mt-2" href="{{ route('student-signup') }}">Enroll Now</a>
+            </div>
+        </div>
+    </div>
+
+
+
 @endsection

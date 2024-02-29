@@ -41,7 +41,7 @@
                       </td>
                       <td>
                         <a href="{{ route('admin.course-teachers.edit', $courseteacher->id) }}" class="btn btn-info"><i class="fas fa-edit"></i> Edit</a>
-                        <a href="{{ route('admin.course-teachers.delete', $courseteacher->id) }}" class="btn btn-danger"><i class="fas fa-trash"></i> Delete</a>
+                        <a href="{{ route('admin.course-teachers.delete', $courseteacher->id) }}" onclick="if (!confirm('Are you sure?')) { return false }" class="btn btn-danger"><i class="fas fa-trash"></i> Delete</a>
                       </td>
                     </tr>
                   @endforeach
@@ -68,5 +68,19 @@
     $(document).ready( function () {
     $('#myTable').DataTable();
 } );
+</script>
+<script>
+    function confirmDelete() {
+        // Display a confirmation dialog
+        var result = confirm("Are you sure you want to delete?");
+        if (result) {
+            // Perform the delete operation or redirect to the delete route
+            // Example: window.location.href = '/delete';
+            alert("Deleted!");
+        } else {
+            // The user clicked "Cancel" or closed the dialog
+            alert("Deletion canceled!");
+        }
+    }
 </script>
 @endpush

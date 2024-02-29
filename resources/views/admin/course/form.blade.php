@@ -28,7 +28,11 @@
             <div class="card-body">
               <div class="form-group">
                 <label for="exampleInputEmail1">Name</label>
-                <input type="text" name="name" class="form-control" id="exampleInputEmail1" placeholder="Enter course name" @isset($course) value="{{ $course->name }}" @endisset required>
+                <input type="text" name="name" class="form-control" id="exampleInputEmail1" placeholder="Enter Course Name" @isset($course) value="{{ $course->name }}" @endisset required>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Amount</label>
+                <input type="number" name="amount" class="form-control" id="exampleInputEmail1" placeholder="Enter Course Amount" @isset($course) value="{{ $course->amount }}" @endisset required>
               </div>
               <div class="form-check">
                 <input type="checkbox" name="status" class="form-check-input" id="exampleCheck1" @isset($course) @if($course->status == 1) checked @endif @else checked @endisset>

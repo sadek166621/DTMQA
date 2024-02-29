@@ -8,8 +8,11 @@ use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Admin\Setting;
 use App\Models\Admin\studentreg;
+use App\Models\Studentsignup;
+use App\Models\ClientContact;
+use App\Models\Admin\Elibrary;
 use Carbon\Carbon;
-
+use DB;
 class DashboardController extends Controller
 {
     /**
@@ -257,8 +260,18 @@ class DashboardController extends Controller
         return back();
     }
 
-    public function appliedview(){
+    public function appliedview()
+    {
         $studentregs = studentreg::latest()->get();
+
+        // $regs = Studentsignup::all();
+        // foreach ($regs as $student) {
+        //         $prefix = 'QA-';
+        //         $randomNumber = rand(10000, 99999); // Adjust the range based on your requirements
+        //         $uniqueCode = $prefix . $randomNumber;
+        //         $student->update(['code' => $uniqueCode]);
+        // }
+
         return view('admin.applied-student.view', compact('studentregs'));
     }
 
@@ -266,5 +279,200 @@ class DashboardController extends Controller
         $studentregs = studentreg::find($id);
         return view('admin.applied-student.details', compact('studentregs'));
 
+    }
+    public function appliededit($id){
+        // return $id;
+        $data['student'] = studentreg::find($id);
+        return view('admin.applied-student.edit',$data);
+    }
+    public function appliedupdate(Request $request, $id){
+        // return $request;
+        $student = studentreg::findOrFail($id);
+        $student->update([
+            'name' => $request->name,
+            'countryplacejoining' => $request->countryplacejoining,
+            'fathername' => $request->fathername,
+            'mothername' => $request->mothername,
+            'phone_number' => $request->phone_number,
+            'whatsapp_number' => $request->whatsapp_number,
+            'tuition_fee' => $request->tuition_fee,
+            'payment_number' => $request->payment_number,
+        ]);
+
+        Toastr::success('Student updated successfully!', 'Success', ["positionClass" => "toast-top-right"]);
+        return redirect()->route('admin.applied-student.view');
+
+    }
+
+     public function applieddelete($studentId){
+        // return $studentId;
+        DB::table('batchstudents')->where('student_id',$studentId)->delete();
+        DB::table('studentsignups')->where('id',$studentId)->delete();
+        studentreg::where('studentId',$studentId)->delete();
+        Toastr::success('Student Delete successfully!', 'Success', ["positionClass" => "toast-top-right"]);
+        return back();
+
+    }
+
+    public function message(){
+        $client = ClientContact::latest()->get();
+        return view('admin.message.client-message',compact('client'));
+    }
+
+// ============================== E-Library===========================
+
+    public function elibrarylist(){
+        $librarys = Elibrary::latest()->get();
+        return view('admin.e-library.list',compact('librarys'));
+    }
+    public function elibraryadd(){
+        return view('admin.e-library.form');
+    }
+    public function elibrarystore(Request $request){
+        // return $request;
+        $validated = $request->validate([
+            'title' => 'required',
+            'library_file' => 'required|mimes:pdf,jpg,png|max:10000',
+            'image' => 'required|mimes:jpeg,png,jpg|max:10000',
+        ]);
+
+        if (!$request->status || $request->status == NULL) {
+            $request->status = 0;
+        } else {
+            $request->status = 1;
+        }
+
+        //dd($title_short);
+        $library = Elibrary::create([
+            'title' => $request->title,
+            'status' => $request->status
+        ]);
+
+        $file = $request->file('library_file');
+        if($file){
+            $currentDate = Carbon::now()->toDateString();
+            //dd($file->getClientOriginalExtension());
+
+            $fileName = $currentDate . '-' . uniqid() . '.' . $file->getClientOriginalExtension();
+
+            if (!file_exists('assets/files/uploads/elibrary')) {
+                mkdir('assets/files/uploads/elibrary', 0777, true);
+            }
+
+            $file->move(public_path('assets/files/uploads/elibrary'), $fileName);
+            //$file->move(base_path().'/assets/files/uploads/notices', $fileName);
+
+            $file = $fileName;
+        }
+
+
+        $image = $request->file('image');
+        if($image){
+            $currentDate = Carbon::now()->toDateString();
+            //dd($image->getClientOriginalExtension());
+
+            $imageName = $currentDate . '-' . uniqid() . '.' . $image->getClientOriginalExtension();
+
+            if (!file_exists('assets/images/uploads/elibrary')) {
+                mkdir('assets/images/uploads/elibrary', 0777, true);
+            }
+
+            $image->move(public_path('assets/images/uploads/elibrary'), $imageName);
+
+            $image = $imageName;
+        }
+
+        $library->library_file = $file;
+        $library->image = $image;
+        $library->save();
+
+        Toastr::success('E-library added successfully!', 'Success', ["positionClass" => "toast-top-right"]);
+
+        return redirect()->route('admin.e-library.list');
+    }
+    public function elibraryedit($id){
+        $data['librarys'] = Elibrary::findOrFail($id);
+
+        if($data['librarys']){
+            return view('admin.e-library.form', $data);
+        }
+
+        return back();
+    }
+
+    public function elibraryupdate(Request $request, $id)
+    {
+        // return $request;
+        $validated = $request->validate([
+            'title' => 'required',
+        ]);
+
+        $library = Elibrary::findOrFail($id);
+        if($library){
+            if (!$request->status || $request->status == NULL) {
+                $request->status = 0;
+            } else {
+                $request->status = 1;
+            }
+
+            $library->update([
+                'title' => $request->title,
+                'status' => $request->status
+            ]);
+
+            $imageName = $library->image;
+            $image = $request->file('image');
+            if($image){
+                $currentDate = Carbon::now()->toDateString();
+                //dd($image->getClientOriginalExtension());
+
+                $imageName = $currentDate . '-' . uniqid() . '.' . $image->getClientOriginalExtension();
+
+                if (!file_exists('assets/images/uploads/elibrary')) {
+                    mkdir('assets/images/uploads/elibrary', 0777, true);
+                }
+
+                $image->move(public_path('assets/images/uploads/elibrary'), $imageName);
+
+                //$image = $imageName;
+            }
+
+            $filename = $library->library_file;
+            $file = $request->file('library_file');
+            if($file){
+                $currentDate = Carbon::now()->toDateString();
+                //dd($file->getClientOriginalExtension());
+
+                $filename = $currentDate . '-' . uniqid() . '.' . $file->getClientOriginalExtension();
+
+                if (!file_exists('assets/files/uploads/elibrary')) {
+                    mkdir('assets/files/uploads/elibrary', 0777, true);
+                }
+
+                $file->move(public_path('assets/files/uploads/elibrary'), $filename);
+                //$file->move(base_path().'/assets/files/uploads/notices', $filename);
+            }
+
+            $library->image = $imageName;
+            $library->library_file = $filename;
+            $library->save();
+
+            Toastr::success('E-library updated successfully!', 'Success', ["positionClass" => "toast-top-right"]);
+
+            return redirect()->route('admin.e-library.list');
+        }
+
+        return back();
+    }
+
+    public function elibrarydestroy($id){
+        $library = Elibrary::findOrFail($id);
+
+        if($library){
+            $library->delete();
+            Toastr::success('E-library deleted successfully!', 'Success', ["positionClass" => "toast-top-right"]);
+        }
+
+        return back();
     }
 }

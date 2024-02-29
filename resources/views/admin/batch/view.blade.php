@@ -11,7 +11,7 @@
             <h2 style="text-align: center; background-color: #D1D2D5;">View Batch</h2>
             <br>
             <h4 >Batch Name: <span style="font-weight: bold"> {{ $batch->title }}</span></h4>
-            <h3 >teacher Name: <span style="font-weight: bold"> {{ $batch->teacher->name }} </span>
+            <h3 >Teacher Name: <span style="font-weight: bold"> {{ $batch->teacher->name }} </span>
             </h3>
             <table  class="table table-bordered table-striped">
               <thead>

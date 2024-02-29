@@ -20,7 +20,7 @@
       <div class="col-md-12">
         <!-- general form elements -->
         <div class="card card-primary">
-          
+
           @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -93,15 +93,15 @@
               </div>
               <div class="form-group">
                 <label for="exampleInputEmail1">Email</label>
-                <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Enter Email Address" @isset($teacher) value="{{ $teacher->email }}" @endisset required>
+                <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Enter Email Address" @isset($teacher) value="{{ $teacher->email }}" @endisset >
               </div>
               <div class="form-group">
                 <label for="exampleInputEmail1">Password</label>
-                <input type="password" name="password" class="form-control" id="exampleInputEmail1" placeholder="Enter Password" required>
+                <input type="password" name="password" class="form-control" id="exampleInputEmail1" placeholder="Enter Password" >
               </div>
               <div class="form-group">
                 <label for="exampleInputEmail1">Confirm Passwor</label>
-                <input type="password" name="confirm_password" class="form-control" id="exampleInputEmail1" placeholder="Enter Confirm Password " required>
+                <input type="password" name="confirm_password" class="form-control" id="exampleInputEmail1" placeholder="Enter Confirm Password ">
               </div>
               <div class="form-group">
                 @isset($teacher) <img src="{{ asset('assets') }}/images/uploads/teachers/{{ $teacher->image }}" alt="Teacher image" width="100px" height="100px"><br/> @endisset

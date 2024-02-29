@@ -1,4 +1,4 @@
-@extends('frontend.master')
+{{-- @extends('frontend.master')
 @section('content')
 <div id="content-websdevusa" class="site-content-websdevusa space stop ngdc.ac.bd-page content-area">
     <div class="container main-area-bg">
@@ -6,7 +6,7 @@
             <div class="col-md-9">
                 <article>
                     <div class="entry">
-                
+
                         <h1 class="heading mt-3">For-Whom</h1>
                         <br>
                         <div>
@@ -14,12 +14,12 @@
                         </div>
                     </div>
                 </article>
-            </div>					
+            </div>
         <!-- End News section -->
         <!-- content-left -->
     <!-- End Column 8 -->
             @include('frontend.include.side-bar')
-</div>		
+</div>
 </div>
 </section>
 
@@ -63,4 +63,40 @@
 </div>
 </div>
 </section>
+@endsection --}}
+
+
+
+@extends('frontend.master')
+
+@section('content')
+
+    <!--  ************************* Page Title Starts Here ************************** -->
+    <div class="page-nav no-margin row">
+        <div class="container">
+            <div class="row">
+                <h2>Dream to Memorize Quran Academy</h2>
+                <p class="mb-3">Learning Quran at Home</p>
+                <ul>
+                    <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+                    <li><i class="fas fa-angle-double-right"></i> For Whom</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ######## For-Whom Information Starts Here ####### -->
+
+    <div class="row contact-rooo no-margin">
+        <div class="container">
+            <div style="padding:20px">
+                <h2>For Whom</h2>
+                <div class="mt-lg-5">
+                    {!! $about->For_Whom !!}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ################# Our Footer Starts Here#######################--->
 @endsection

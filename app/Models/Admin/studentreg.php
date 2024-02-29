@@ -4,6 +4,8 @@ namespace App\Models\Admin;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Studentsignup;
+
 
 class studentreg extends Model
 {
@@ -13,5 +15,9 @@ class studentreg extends Model
     public function course()
     {
         return $this->belongsTo(Course::class,'liketostudy');
+    }
+    public function code()
+    {
+        return $this->belongsTo(Studentsignup::class, 'studentId' , 'id');
     }
 }

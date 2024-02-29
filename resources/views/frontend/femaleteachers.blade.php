@@ -1,11 +1,11 @@
-@extends('frontend.master')
+{{-- @extends('frontend.master')
 @section('content')
 	<div id="content-websdevusa" class="site-content-websdevusa space stop ngdc.ac.bd-page content-area">
 			<div class="container main-area-bg">
 				<div class="row">
 					<div class="col-md-9">
 						<h1>Teachers Female</h1>
-						<form action="{{ route('teacher.list') }}" method="get" class="form-inline mb-2">
+						<form action="{{ route('femaleteacher.list') }}" method="get" class="form-inline mb-2">
 							<div class="form-group mx-sm-3 mb-2">
 								<select name="department" id="department" class="form-control">
 								<option value="">--Select Department--</option>
@@ -48,12 +48,12 @@
 							@endif
 							</tbody>
 						</table>
-					</div>					
+					</div>
 				<!-- End News section -->
 				<!-- content-left -->
 			<!-- End Column 8 -->
 			@include('frontend.include.side-bar')
-		</div>		
+		</div>
 	</div>
 </section>
 
@@ -97,4 +97,74 @@
 		</div>
 	</div>
 </section>
-	@endsection
+	@endsection --}}
+
+    @extends('frontend.master')
+    @section('content')
+    <div class="page-nav no-margin row">
+        <div class="container">
+            <div class="row">
+                <h2>Dream to Memorize Quran Academy</h2>
+                <p class="mb-3">Learning Quran at Home</p>
+                <ul>
+                    <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+                    <li><i class="fas fa-angle-double-right"></i> Teachers (Female)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ######## Quran Reading Course Kids Information Starts Here ####### -->
+
+    <div class="row contact-rooo no-margin">
+        <div class="container">
+            <div>
+                <h2>Teachers (Female)</h2>
+                <div class="d-flex align-items-center">
+                    <form action="{{ route('femaleteacher.list') }}" method="get" class="form-inline mb-2">
+                        <select name="department" id="department" class="form-control mt-4">
+                            @foreach ($departments as $department)
+                            @isset($_GET['department'])
+                            <option value="{{ $department->id }}" @if($_GET['department'] == $department->id) selected @endif>{{ $department->name }}</option>
+                            @else
+                            <option value="{{ $department->id }}">{{ $department->name }}</option>
+                            @endisset
+                        @endforeach
+                        </select>
+                        <button type="submit" class="btn btn-primary px-4 mx-3">Search</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="mt-lg-5">
+                <table id="" class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">SL</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Department</th>
+                            <th scope="col">Designation</th>
+                            <th scope="col">Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (count($teachers) > 0)
+                  				@foreach ($teachers as $key => $teacher)
+									<tr>
+										<td>{{ $key+1 }}</td>
+										<td>{{ $teacher->name }}</td>
+										<td>{{ $teacher->department->name }}</td>
+										<td>{{ $teacher->designation }}</td>
+										<td><a href="{{ route('teacher.view', $teacher->username) }}" class="text-success">View details</a></td>
+									</tr>
+								@endforeach
+							@else
+								<tr><td colspan="5" class="text-center">No teacher found</td></tr>
+							@endif
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    </div>
+    @endsection

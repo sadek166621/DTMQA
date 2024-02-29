@@ -1,4 +1,4 @@
-@extends('frontend.master')
+{{-- @extends('frontend.master')
 @section('content')
 <style>
     body {
@@ -59,51 +59,6 @@ tr:nth-child(odd) {
     <div class="container main-area-bg">
         <div class="row">
             <div class="col-md-9">
-                {{-- <header>
-                    <h1>Student Dashboard</h1>
-                </header>
-                <section class="student-info">
-                    <h2>Student Information</h2>
-                    <div class="student-details">
-                        <div class="detail">
-                            <strong>Name:</strong> {{ $dashboard->name }}.  <strong>Initial:</strong> {{ $dashboard->initial }}
-                        </div>
-                        <div class="detail">
-                            <strong>Date Of Birth:</strong> {{ $dashboard->date }}/{{ $dashboard->month }}/{{ $dashboard->year }}
-                        </div>
-                        <div class="detail">
-                            <strong>Father's Name:</strong> {{ $dashboard->fathername }} | <strong>Mother's Name:</strong> {{ $dashboard->mothername }},
-                        </div>
-                        <div class="detail">
-                            <strong>Email:</strong> john.doe@example.com
-                        </div>
-                    </div>
-                </section>
-                <section class="academic-info">
-                    <h2>Academic Information</h2>
-                    <table>
-                        <tr>
-                            <th>Subject</th>
-                            <th>Grade</th>
-                        </tr>
-                        <tr>
-                            <td>Mathematics</td>
-                            <td>A</td>
-                        </tr>
-                        <tr>
-                            <td>Science</td>
-                            <td>B</td>
-                        </tr>
-                        <tr>
-                            <td>History</td>
-                            <td>C</td>
-                        </tr>
-                        <tr>
-                            <td>English</td>
-                            <td>A</td>
-                        </tr>
-                    </table>
-                </section> --}}
                 <header>
                     <h1>Student Profile</h1>
                 </header>
@@ -123,15 +78,8 @@ tr:nth-child(odd) {
                                     href="{{ route('logout') }}">Logout</a>
                                     <hr>
 
-                                {{--<a class="list-group-item list-group-item-action" data-toggle="list"
-                                    href="#account-social-links">Social links</a>
-                                <a class="list-group-item list-group-item-action" data-toggle="list"
-                                    href="#account-connections">Connections</a>
-                                <a class="list-group-item list-group-item-action" data-toggle="list"
-                                    href="#account-notifications">Notifications</a> --}}
                             </div>
                         </div>
-                        {{-- <div class="b-example-divider b-example-vr"></div> --}}
                         <div class="col-md-9">
                             <div class="tab-content">
                                 <div class="tab-pane fade active show" id="account-general">
@@ -142,8 +90,12 @@ tr:nth-child(odd) {
                                                     <strong>Name:</strong> {{ $dashboard->name }}
                                                 </div>
                                                 <div class="details">
-                                                    <strong>Initial:</strong> {{ $dashboard->initial }}
+                                                    <strong>User-Name</strong> {{ $dashboard->code->user_name }}
                                                 </div>
+                                                <div class="details">
+                                                    <strong>Student ID:</strong> {{ $dashboard->code->code }}
+                                                </div>
+
                                                 <div class="details">
                                                     <strong>Date Of Birth:</strong> {{ $dashboard->date }}/{{ $dashboard->month }}/{{ $dashboard->year }}.
                                                 </div>
@@ -519,7 +471,7 @@ tr:nth-child(odd) {
                                             </div>
                                             {{-- <div class="details">
                                                 <strong>:</strong> {{ $dashboard->suitable_time }}.
-                                            </div> --}}
+                                            </div> -
                                             <br>
                                             <h5 style="text-decoration: underline;">Tuition Fee</h5>
                                                     <div class="details">
@@ -539,10 +491,10 @@ tr:nth-child(odd) {
                                         </div>
 
 
-                                       
-                                    
+
+
                                         <table class="newspaper-n">
-                                            {{-- <caption>প্রথম শ্রেণির (রাজস্ব) কর্মচারীদের তালিকা</caption> --}}
+                                            {{-- <caption>প্রথম শ্রেণির (রাজস্ব) কর্মচারীদের তালিকা</caption> -
                                             <tbody>
                                                 <tr>
                                                     <th align="center">SL NO</th>
@@ -567,135 +519,11 @@ tr:nth-child(odd) {
 
                                             </tbody>
                                         </table>
-                                       
-                                        
-                                        
-
                                     </div>
                                 </div>
-                                {{-- <div class="tab-pane fade" id="account-social-links">
-                                    <div class="card-body pb-2">
-                                        <div class="form-group">
-                                            <label class="form-label">Twitter</label>
-                                            <input type="text" class="form-control" value="https://twitter.com/user">
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="form-label">Facebook</label>
-                                            <input type="text" class="form-control" value="https://www.facebook.com/user">
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="form-label">Google+</label>
-                                            <input type="text" class="form-control" value>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="form-label">LinkedIn</label>
-                                            <input type="text" class="form-control" value>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="form-label">Instagram</label>
-                                            <input type="text" class="form-control" value="https://www.instagram.com/user">
-                                        </div>
-                                    </div>
-                                </div> --}}
-                                {{-- <div class="tab-pane fade" id="account-connections">
-                                    <div class="card-body">
-                                        <button type="button" class="btn btn-twitter">Connect to
-                                            <strong>Twitter</strong></button>
-                                    </div>
-                                    <hr class="border-light m-0">
-                                    <div class="card-body">
-                                        <h5 class="mb-2">
-                                            <a href="javascript:void(0)" class="float-right text-muted text-tiny"><i
-                                                    class="ion ion-md-close"></i> Remove</a>
-                                            <i class="ion ion-logo-google text-google"></i>
-                                            You are connected to Google:
-                                        </h5>
-                                        <a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                            data-cfemail="f9979498818e9c9595b994989095d79a9694">[email&#160;protected]</a>
-                                    </div>
-                                    <hr class="border-light m-0">
-                                    <div class="card-body">
-                                        <button type="button" class="btn btn-facebook">Connect to
-                                            <strong>Facebook</strong></button>
-                                    </div>
-                                    <hr class="border-light m-0">
-                                    <div class="card-body">
-                                        <button type="button" class="btn btn-instagram">Connect to
-                                            <strong>Instagram</strong></button>
-                                    </div>
-                                </div> --}}
-                                {{-- <div class="tab-pane fade" id="account-notifications">
-                                    <div class="card-body pb-2">
-                                        <h6 class="mb-4">Activity</h6>
-                                        <div class="form-group">
-                                            <label class="switcher">
-                                                <input type="checkbox" class="switcher-input" checked>
-                                                <span class="switcher-indicator">
-                                                    <span class="switcher-yes"></span>
-                                                    <span class="switcher-no"></span>
-                                                </span>
-                                                <span class="switcher-label">Email me when someone comments on my article</span>
-                                            </label>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="switcher">
-                                                <input type="checkbox" class="switcher-input" checked>
-                                                <span class="switcher-indicator">
-                                                    <span class="switcher-yes"></span>
-                                                    <span class="switcher-no"></span>
-                                                </span>
-                                                <span class="switcher-label">Email me when someone answers on my forum
-                                                    thread</span>
-                                            </label>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="switcher">
-                                                <input type="checkbox" class="switcher-input">
-                                                <span class="switcher-indicator">
-                                                    <span class="switcher-yes"></span>
-                                                    <span class="switcher-no"></span>
-                                                </span>
-                                                <span class="switcher-label">Email me when someone follows me</span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <hr class="border-light m-0">
-                                    <div class="card-body pb-2">
-                                        <h6 class="mb-4">Application</h6>
-                                        <div class="form-group">
-                                            <label class="switcher">
-                                                <input type="checkbox" class="switcher-input" checked>
-                                                <span class="switcher-indicator">
-                                                    <span class="switcher-yes"></span>
-                                                    <span class="switcher-no"></span>
-                                                </span>
-                                                <span class="switcher-label">News and announcements</span>
-                                            </label>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="switcher">
-                                                <input type="checkbox" class="switcher-input">
-                                                <span class="switcher-indicator">
-                                                    <span class="switcher-yes"></span>
-                                                    <span class="switcher-no"></span>
-                                                </span>
-                                                <span class="switcher-label">Weekly product updates</span>
-                                            </label>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="switcher">
-                                                <input type="checkbox" class="switcher-input" checked>
-                                                <span class="switcher-indicator">
-                                                    <span class="switcher-yes"></span>
-                                                    <span class="switcher-no"></span>
-                                                </span>
-                                                <span class="switcher-label">Weekly blog digest</span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div> --}}
                             </div>
                         </div>
+                        <span style="padding-left:28px;color:red;" >* Alhamdulillah, your registration has been completed successfully. Class schedule will be informed to you through SMS Inshallah. <span>
                     </div>
                 </div>
             </div>
@@ -747,4 +575,492 @@ tr:nth-child(odd) {
 </div>
 </div>
 </section>
+@endsection --}}
+
+@extends('frontend.master')
+@section('content')
+<!--  ************************* Page Title Starts Here ************************** -->
+<div class="page-nav no-margin row">
+    <div class="container">
+        <div class="row">
+            <h2>Dream to Memorize Quran Academy</h2>
+            <p class="mb-3">Learning Quran at Home</p>
+            <ul>
+                <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+                <li><i class="fas fa-angle-double-right"></i> Student Profile</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- ######## Students Information Starts Here ####### -->
+
+<div class="row contact-rooo no-margin">
+    <div class="container d-flex justify-content-center">
+        <div class="card" style="padding:20px">
+            <div class="row g-5">
+                <div class="col-md-3 pt-0">
+                    <div class="list-group list-group-flush account-settings-links">
+                        <a class="list-group-item list-group-item-action active" data-toggle="list"
+                            href="#account-general">General</a>
+                        <a class="list-group-item list-group-item-action" data-toggle="list"
+                            href="#account-change-password">Class Information</a>
+                        <a class="list-group-item list-group-item-action" data-toggle="list"
+                            href="#account-info">Batch</a>
+                        <a class="list-group-item list-group-item-action" href="{{ route('logout') }}">Logout</a> 
+                        <hr>
+                    </div>
+                </div>
+
+                <div class="col-md-9">
+                    <div class="tab-content">
+                        <div class="tab-pane fade active show" id="account-general">
+                            <section class="student-info">
+                                <h3 style="text-decoration: underline;">Student Information</h2>
+                                    <div class="student-details">
+                                        <div class="">
+                                            <strong>Name:</strong> {{ $dashboard->name }}
+                                        </div>
+                                        <div class="details">
+                                            <strong>User-Name</strong> {{ $dashboard->code->user_name }}
+                                        </div>
+                                        <div class="details">
+                                            <strong>Student ID:</strong> {{ $dashboard->code->code }}
+                                        </div>
+
+                                        <div class="details">
+                                            <strong>Date Of Birth:</strong> {{ $dashboard->date }}/{{ $dashboard->month }}/{{ $dashboard->year }}.
+                                        </div>
+                                        <div class="details">
+                                            <strong>Country:</strong> {{ $dashboard->countryplacejoining }}.
+                                        </div>
+                                        <div class="details">
+                                            <strong>Father's Name:</strong> {{ $dashboard->fathername }}.
+                                        </div>
+                                        <div>
+                                            <strong>Mother's Name:</strong> {{ $dashboard->mothername }}.
+                                        </div>
+                                        <div class="details">
+                                            <strong>Gender:</strong> {{ $dashboard->gender }}.
+                                        </div>
+                                        <div class="details">
+                                            <strong>Phone:</strong> {{ $dashboard->phone_number }}.
+                                        </div>
+                                        <div>
+                                            <strong>WhatsApp:</strong> {{ $dashboard->whatsapp_number }}.
+                                        </div>
+                                        <br>
+                                        <h5 style="text-decoration: underline;">Present Adress</h5>
+                                            <div class="details">
+                                                <strong>
+                                                    Vill/Town/City/Post Office:</strong> {{ $dashboard->post_code }}.
+                                            </div>
+                                            <div class="details">
+                                                <strong>Thana:</strong> {{ $dashboard->thana }}.
+                                                <strong>Division:</strong>
+                                                    @if ($dashboard->division_id==1)
+                                                    Dhaka
+                                                    @elseif ($dashboard->division_id==2)
+                                                    chattogram
+                                                    @elseif ($dashboard->division_id==3)
+                                                    rajshahi
+                                                    @elseif ($dashboard->division_id==4)
+                                                    khulna
+                                                    @elseif ($dashboard->division_id==5)
+                                                    barishal
+                                                    @elseif ($dashboard->division_id==6)
+                                                    sylhet
+                                                    @elseif ($dashboard->division_id==7)
+                                                    rangpur
+                                                    @elseif ($dashboard->division_id==8)
+                                                    mymensingh
+
+                                                    @endif
+
+                                                     . <strong>District:</strong>
+                                                     @if ($dashboard->district_id == 1)
+                                                     cumilla
+                                                     @elseif($dashboard->district_id == 2)
+                                                     feni
+                                                     @elseif($dashboard->district_id == 3)
+                                                     brahmanbaria
+                                                     @elseif($dashboard->district_id == 4)
+                                                     rangamati
+                                                     @elseif($dashboard->district_id == 5)
+                                                     noakhali
+                                                     @elseif($dashboard->district_id == 6)
+                                                     chandpur
+                                                     @elseif($dashboard->district_id == 7)
+                                                     lakshmipur
+                                                     @elseif($dashboard->district_id == 8)
+                                                     chattogram
+                                                     @elseif($dashboard->district_id == 9)
+                                                     coxsbazar
+                                                     @elseif($dashboard->district_id == 10)
+                                                     khagrachari
+                                                     @elseif($dashboard->district_id == 11)
+                                                     bandarban
+                                                     @elseif($dashboard->district_id == 12)
+                                                     sirajganj
+                                                     @elseif($dashboard->district_id == 13)
+                                                     pabna
+                                                     @elseif($dashboard->district_id == 14)
+                                                     bogura
+                                                     @elseif($dashboard->district_id == 15)
+                                                     rajshahi
+                                                     @elseif($dashboard->district_id == 16)
+                                                     natore
+                                                     @elseif($dashboard->district_id == 17)
+                                                     jaipurhat
+                                                     @elseif($dashboard->district_id == 18)
+                                                     nawabganj
+                                                     @elseif($dashboard->district_id == 19)
+                                                     naogaon
+                                                     @elseif($dashboard->district_id == 20)
+                                                     jashore
+                                                     @elseif($dashboard->district_id == 21)
+                                                     satkhira
+                                                     @elseif($dashboard->district_id == 22)
+                                                     meherpur
+                                                     @elseif($dashboard->district_id == 23)
+                                                     narail
+                                                     @elseif($dashboard->district_id == 24)
+                                                     chuadanga
+                                                     @elseif($dashboard->district_id == 25)
+                                                     kushtia
+                                                     @elseif($dashboard->district_id == 26)
+                                                     magura
+                                                     @elseif($dashboard->district_id == 27)
+                                                     khulna
+                                                     @elseif($dashboard->district_id == 28)
+                                                     bagerhat
+                                                     @elseif($dashboard->district_id == 29)
+                                                     jhenaidah
+                                                     @elseif($dashboard->district_id == 30)
+                                                     barishal
+                                                     @elseif($dashboard->district_id == 31)
+                                                     jhalokati
+                                                     @elseif($dashboard->district_id == 32)
+                                                     patuakhali
+                                                     @elseif($dashboard->district_id == 33)
+                                                     pirojpur
+                                                     @elseif($dashboard->district_id == 34)
+                                                     bhola
+                                                     @elseif($dashboard->district_id == 35)
+                                                     barguna
+                                                     @elseif($dashboard->district_id == 36)
+                                                     sylhet
+                                                     @elseif($dashboard->district_id == 37)
+                                                     moulvibazar
+                                                     @elseif($dashboard->district_id == 38)
+                                                     habiganj
+                                                     @elseif($dashboard->district_id == 39)
+                                                     sunamganj
+                                                     @elseif($dashboard->district_id == 40)
+                                                     rangpur
+                                                     @elseif($dashboard->district_id == 41)
+                                                     panchagarh
+                                                     @elseif($dashboard->district_id == 42)
+                                                     dinajpur
+                                                     @elseif($dashboard->district_id == 43)
+                                                     lalmonirhat
+                                                     @elseif($dashboard->district_id == 44)
+                                                     nilphamari
+                                                     @elseif($dashboard->district_id == 45)
+                                                     thakurgaon
+                                                     @elseif($dashboard->district_id == 46)
+                                                     gaibandha
+                                                     @elseif($dashboard->district_id == 47)
+                                                     kurigram
+                                                     @elseif($dashboard->district_id == 48)
+                                                     mymensingh
+                                                     @elseif($dashboard->district_id == 49)
+                                                     jamalpur
+                                                     @elseif($dashboard->district_id == 50)
+                                                     netrokona
+                                                     @elseif($dashboard->district_id == 51)
+                                                     sherpur
+                                                     @elseif($dashboard->district_id == 52)
+                                                     dhaka
+                                                     @elseif($dashboard->district_id == 53)
+                                                     narsingdi
+                                                     @elseif($dashboard->district_id == 54)
+                                                     gazipur
+                                                     @elseif($dashboard->district_id == 55)
+                                                     shariatpur
+                                                     @elseif($dashboard->district_id == 56)
+                                                     narayanganj
+                                                     @elseif($dashboard->district_id == 57)
+                                                     tangail
+                                                     @elseif($dashboard->district_id == 58)
+                                                     kishoreganj
+                                                     @elseif($dashboard->district_id == 59)
+                                                     manikganj
+                                                     @elseif($dashboard->district_id == 60)
+                                                     munshiganj
+                                                     @elseif($dashboard->district_id == 61)
+                                                     rajbari
+                                                     @elseif($dashboard->district_id == 62)
+                                                     madaripur
+                                                     @elseif($dashboard->district_id == 63)
+                                                     faridpur
+                                                     @elseif($dashboard->district_id == 64)
+                                                     gopalganj
+                                                     @endif
+                                            </div>
+                                            <br>
+                                            <h5 style="text-decoration: underline;">Permanent Adress</h2>
+                                                <div class="details">
+                                                    <strong>
+                                                        Vill/Town/City/Post Office:</strong> {{ $dashboard->p_postcode }}.
+                                                </div>
+                                                <div class="details">
+                                                    <strong>Thana:</strong> {{ $dashboard->P_thana }}.
+                                                    <strong>Division:</strong>
+                                                    @if ($dashboard->division_id==1)
+                                                    Dhaka
+                                                    @elseif ($dashboard->division_id==2)
+                                                    chattogram
+                                                    @elseif ($dashboard->division_id==3)
+                                                    rajshahi
+                                                    @elseif ($dashboard->division_id==4)
+                                                    khulna
+                                                    @elseif ($dashboard->division_id==5)
+                                                    barishal
+                                                    @elseif ($dashboard->division_id==6)
+                                                    sylhet
+                                                    @elseif ($dashboard->division_id==7)
+                                                    rangpur
+                                                    @elseif ($dashboard->division_id==8)
+                                                    mymensingh
+
+                                                    @endif
+
+                                                     . <strong>District:</strong>
+                                                     @if ($dashboard->district_id == 1)
+                                                     cumilla
+                                                     @elseif($dashboard->district_id == 2)
+                                                     feni
+                                                     @elseif($dashboard->district_id == 3)
+                                                     brahmanbaria
+                                                     @elseif($dashboard->district_id == 4)
+                                                     rangamati
+                                                     @elseif($dashboard->district_id == 5)
+                                                     noakhali
+                                                     @elseif($dashboard->district_id == 6)
+                                                     chandpur
+                                                     @elseif($dashboard->district_id == 7)
+                                                     lakshmipur
+                                                     @elseif($dashboard->district_id == 8)
+                                                     chattogram
+                                                     @elseif($dashboard->district_id == 9)
+                                                     coxsbazar
+                                                     @elseif($dashboard->district_id == 10)
+                                                     khagrachari
+                                                     @elseif($dashboard->district_id == 11)
+                                                     bandarban
+                                                     @elseif($dashboard->district_id == 12)
+                                                     sirajganj
+                                                     @elseif($dashboard->district_id == 13)
+                                                     pabna
+                                                     @elseif($dashboard->district_id == 14)
+                                                     bogura
+                                                     @elseif($dashboard->district_id == 15)
+                                                     rajshahi
+                                                     @elseif($dashboard->district_id == 16)
+                                                     natore
+                                                     @elseif($dashboard->district_id == 17)
+                                                     jaipurhat
+                                                     @elseif($dashboard->district_id == 18)
+                                                     nawabganj
+                                                     @elseif($dashboard->district_id == 19)
+                                                     naogaon
+                                                     @elseif($dashboard->district_id == 20)
+                                                     jashore
+                                                     @elseif($dashboard->district_id == 21)
+                                                     satkhira
+                                                     @elseif($dashboard->district_id == 22)
+                                                     meherpur
+                                                     @elseif($dashboard->district_id == 23)
+                                                     narail
+                                                     @elseif($dashboard->district_id == 24)
+                                                     chuadanga
+                                                     @elseif($dashboard->district_id == 25)
+                                                     kushtia
+                                                     @elseif($dashboard->district_id == 26)
+                                                     magura
+                                                     @elseif($dashboard->district_id == 27)
+                                                     khulna
+                                                     @elseif($dashboard->district_id == 28)
+                                                     bagerhat
+                                                     @elseif($dashboard->district_id == 29)
+                                                     jhenaidah
+                                                     @elseif($dashboard->district_id == 30)
+                                                     barishal
+                                                     @elseif($dashboard->district_id == 31)
+                                                     jhalokati
+                                                     @elseif($dashboard->district_id == 32)
+                                                     patuakhali
+                                                     @elseif($dashboard->district_id == 33)
+                                                     pirojpur
+                                                     @elseif($dashboard->district_id == 34)
+                                                     bhola
+                                                     @elseif($dashboard->district_id == 35)
+                                                     barguna
+                                                     @elseif($dashboard->district_id == 36)
+                                                     sylhet
+                                                     @elseif($dashboard->district_id == 37)
+                                                     moulvibazar
+                                                     @elseif($dashboard->district_id == 38)
+                                                     habiganj
+                                                     @elseif($dashboard->district_id == 39)
+                                                     sunamganj
+                                                     @elseif($dashboard->district_id == 40)
+                                                     rangpur
+                                                     @elseif($dashboard->district_id == 41)
+                                                     panchagarh
+                                                     @elseif($dashboard->district_id == 42)
+                                                     dinajpur
+                                                     @elseif($dashboard->district_id == 43)
+                                                     lalmonirhat
+                                                     @elseif($dashboard->district_id == 44)
+                                                     nilphamari
+                                                     @elseif($dashboard->district_id == 45)
+                                                     thakurgaon
+                                                     @elseif($dashboard->district_id == 46)
+                                                     gaibandha
+                                                     @elseif($dashboard->district_id == 47)
+                                                     kurigram
+                                                     @elseif($dashboard->district_id == 48)
+                                                     mymensingh
+                                                     @elseif($dashboard->district_id == 49)
+                                                     jamalpur
+                                                     @elseif($dashboard->district_id == 50)
+                                                     netrokona
+                                                     @elseif($dashboard->district_id == 51)
+                                                     sherpur
+                                                     @elseif($dashboard->district_id == 52)
+                                                     dhaka
+                                                     @elseif($dashboard->district_id == 53)
+                                                     narsingdi
+                                                     @elseif($dashboard->district_id == 54)
+                                                     gazipur
+                                                     @elseif($dashboard->district_id == 55)
+                                                     shariatpur
+                                                     @elseif($dashboard->district_id == 56)
+                                                     narayanganj
+                                                     @elseif($dashboard->district_id == 57)
+                                                     tangail
+                                                     @elseif($dashboard->district_id == 58)
+                                                     kishoreganj
+                                                     @elseif($dashboard->district_id == 59)
+                                                     manikganj
+                                                     @elseif($dashboard->district_id == 60)
+                                                     munshiganj
+                                                     @elseif($dashboard->district_id == 61)
+                                                     rajbari
+                                                     @elseif($dashboard->district_id == 62)
+                                                     madaripur
+                                                     @elseif($dashboard->district_id == 63)
+                                                     faridpur
+                                                     @elseif($dashboard->district_id == 64)
+                                                     gopalganj
+                                                     @endif
+
+                                                </div>
+                                                <h6 style="text-decoration: underline">
+                                                    payment number
+                                                </h6>
+                                                <div class="details">
+                                                    @if ($dashboard->payment_number)
+                                                    {{ $dashboard->payment_number }}
+                                                    @else
+                                                    .
+                                                    @endif
+                                                </div>
+                                    </div>
+                            </section>
+                        </div>
+                        <div class="tab-pane fade" id="account-change-password">
+                            <section class="student-info">
+                                <h3 style="text-decoration: underline;">Class Information</h2>
+                                    <div class="student-details">
+                                        <div class="">
+                                            <strong>Like TO Study:</strong> {{ $dashboard->course->name }}
+                                        </div>
+                                        <div class="details">
+                                            <strong>Number of Classes per Week:</strong> {{ $dashboard->cls_per_wk }}
+                                        </div>
+                                        <div class="details">
+                                            <strong>Weekly Days:</strong> @php
+                                                $weeks = json_decode( $dashboard->weeks)
+                                            @endphp
+                                            @foreach ( $weeks as $week)
+                                                {{ $week }},
+                                            @endforeach
+                                        </div>
+                                        <div class="details">
+                                            <strong>Suitable Time :</strong> {{ $dashboard->suitable_time }}.
+                                        </div> -
+                                        <br>
+                                        <h5 style="text-decoration: underline;">Admission Fee</h5>
+                                                <div class="details">
+                                                    <strong>
+                                                        Tuition Fee:</strong> 1000Tk.
+                                                </div>
+                                        <h5 style="text-decoration: underline;">Course Fee</h5>
+                                                <div class="details">
+                                                    <strong>
+                                                        Tuition Fee:</strong> {{ $dashboard->tuition_fee }}.
+                                                </div>
+                                        <h5 style="text-decoration: underline;">Total Amount</h5>
+                                                <div class="details">
+                                                    <strong>
+                                                        Tuition Fee:</strong> {{ $dashboard->total_amount }}.
+                                                </div>
+                                    </div>
+                            </section>
+                        </div>
+                        <div class="tab-pane fade" id="account-info">
+                            <div class="card-body pb-2">
+                                <div class="form-group">
+                                    <h5 class="form-label">Batch Name: Quran Reading</h5>
+                                </div>
+                                <table class="table table-hover table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <th align="center">SL NO</th>
+                                            <th align="left">Link</th>
+                                            <th align="center">Date</th>
+                                            <th align="center">Time</th>
+                                        </tr>
+                                        @if ( count($lives) > 0)
+                                        @foreach ( $lives as $key=> $live )
+                                            <tr>
+                                                <td align="center">{{ $key+1 }}</td>
+                                                <td align=""><a href="{{  $live->link }}">{{ Str::substr( $live->link, 0, 25) }}..</a></td>
+                                                <td align="center">{{ $live->date }}</td>
+                                                <td align="center">{{ $live->time }}</td>
+                                            </tr>
+                                            @endforeach
+                                            @else
+                                            <tr>
+                                                <td colspan="4" class="text-center">No Live Class found</td>
+                                            </tr>
+                                            @endif
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <span class="mt-5" style="padding-left:28px;color:red;">* Alhamdulillah, your registration has been
+                    completed successfully. Class schedule will be informed to you through SMS
+                    Inshallah. <span>
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection

@@ -24,7 +24,7 @@ class BatchController extends Controller
     public function index()
     {
         $data['batches'] = Batch::latest()->get();
-       return view('admin.batch.list', $data);
+        return view('admin.batch.list', $data);
     }
 
     /**
@@ -35,7 +35,14 @@ class BatchController extends Controller
     public function create()
     {
         $data['teachers'] = Teacher::latest()->get();
-        $data['students'] = studentreg::all();
+        $bstudents =Batchstudents::all();
+
+        $studentIds = array();
+        foreach($bstudents as $student){
+            array_push($studentIds,$student->student_id);
+        }
+        $data['students'] = studentreg::whereNotIn('studentId', $studentIds)->latest()->get();
+
         return view('admin.batch.form',$data);
 
     }
@@ -62,15 +69,14 @@ class BatchController extends Controller
             'teacher_id' => $request->teacher_id
         ]);
 
-        Session::put('batch_id', $batch->id);
-        if ($students=$request->student_id ){
-                foreach ($students as $student){
-                    $batchstudents = new Batchstudents();
-                    $batchstudents->batch_id = Session::get('batch_id');
-                    $batchstudents->student_id = $student;
-                    $batchstudents->save();
-                }
+        if ($students=$request->student_id){
+            foreach ($students as $student){
+                $batchstudents = new Batchstudents();
+                $batchstudents->batch_id = $batch->id;
+                $batchstudents->student_id = $student;
+                $batchstudents->save();
             }
+        }
 
         Toastr::success('Batch added successfully!', 'Success', ["positionClass" => "toast-top-right"]);
 
@@ -105,15 +111,21 @@ class BatchController extends Controller
     public function edit($id)
    {
         $data['teachers'] = Teacher::latest()->get();
-        $data['students'] = studentreg::all();
         $data['batch'] = Batch::find($id);
-        // $data['batches'] = Batchstudents::where('batch_id', $id)->get();
 
-         $data['batches'] = DB::table('batchstudents')
-         ->join('studentregs', 'studentregs.studentId', '=', 'batchstudents.student_id')
-         ->select('studentregs.*')
-         ->where('batchstudents.batch_id', $id)
-        ->get();
+        $bstudents = Batchstudents::where('batch_id',$id)->get();
+
+        $studentIds = array();
+        foreach($bstudents as $student){
+            array_push($studentIds,$student->student_id);
+        }
+        $data['students'] = studentreg::latest()->get();
+        $data['bids'] = $studentIds;
+        //  $data['batches'] = DB::table('batchstudents')
+        //  ->join('studentregs', 'studentregs.studentId', '=', 'batchstudents.student_id')
+        //  ->select('studentregs.*')
+        //  ->where('batchstudents.batch_id', $id)
+        // ->get();
         // $bstudents = Batchstudents::where('batch_id', $id)->get();
 
         return view('admin.batch.form',$data);
@@ -128,11 +140,28 @@ class BatchController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // return $id;
-        $campaing = Batch::find($id);
+        $batch = Batch::findOrFail($id);
+        $batch->title = $request->title;
+        $batch->teacher_id = $request->teacher_id;
+        $batch->save();
 
+        Batchstudents::where('batch_id',$id)->delete();
+
+        if ($students=$request->student_id){
+            foreach ($students as $student){
+                $batchstudents = new Batchstudents();
+                $batchstudents->batch_id = $batch->id;
+                $batchstudents->student_id = $student;
+                $batchstudents->save();
+            }
+        }
+
+        Toastr::success('Batch updated successfully!', 'Success', ["positionClass" => "toast-top-right"]);
+
+        return redirect()->route('admin.batch.list');
 
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -142,6 +171,10 @@ class BatchController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Batch::destroy($id);
+        Batchstudents::where('batch_id',$id)->delete();
+
+        return back();
     }
+
 }

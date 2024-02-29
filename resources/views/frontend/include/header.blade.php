@@ -1,4 +1,4 @@
-<header id="masthead" class="no-ecommerce site-header small-header header_three_php"><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+{{-- <header id="masthead" class="no-ecommerce site-header small-header header_three_php"><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <div class="header-topbar" style="display:none;">
       <div class="container">
           <div class="row">
@@ -33,10 +33,10 @@
               <div class="col">
                   <nav id="site-navigation" class="main-navigation navbar navbar-expand-md navbar-light row" role="navigation">
                       <div class="navbar-header">
-                          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#TF-Navbar" aria-controls="TF-Navbar" aria-expanded="false" aria-label="Toggle navigation">
-                              <span class="icon-bar"></span>
-                              <span class="icon-bar"></span>
-                              <span class="icon-bar"></span>
+                          <button class="navbar-toggler"  type="button" data-toggle="collapse" data-target="#TF-Navbar" aria-controls="TF-Navbar" aria-expanded="false" aria-label="Toggle navigation">
+                              <span  class="icon-bar"></span>
+                              <span  class="icon-bar"></span>
+                              <span  class="icon-bar"></span>
                           </button>
                       </div>
                       <div id="TF-Navbar" class="collapse navbar-collapse col-md-12"><ul id="primary-menu" class="nav navbar-nav primary-menu"><li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-3392" class="nav_home menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-3390 current_page_item active menu-item-3392 nav-item"><a href="{{ route('home') }}" class="nav-link"><span class="menu-text"><i class="fa fa-home" aria-hidden="true"></i></span></a></li>
@@ -104,14 +104,12 @@
 
 <li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-3340" class="nav_orange menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown menu-item-3340 nav-item"><a href="#" class="nav-link"><span class="menu-text">More</span><div class="mobile-nav"><i class="fa fa-angle-down"></i></div></a>
   <ul class="dropdown-menu"  role="menu">
-      {{-- <li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-3341" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3341 nav-item"><a href="{{ route('how-to-register') }}" class="dropdown-item"><span class="menu-text">How to Register</span></a></li> --}}
       <li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-3341" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3341 nav-item"><a href="{{ route('teacher-login-page') }}" class="dropdown-item"><span class="menu-text">Teacher Login</span></a></li>
       <li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-3341" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3341 nav-item"><a href="{{ route('student-login-panel') }}" class="dropdown-item"><span class="menu-text">Student Login</span></a></li>
       <li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-3341" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3341 nav-item"><a href="{{ route('online-class') }}" class="dropdown-item"><span class="menu-text">Online Class</span></a></li>
       <li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-3341" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3341 nav-item"><a href="{{ route('Basics-of-Islam-Campus') }}" class="dropdown-item"><span class="menu-text">Basics of Islam Campus</span></a></li>
       <li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-3341" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3341 nav-item"><a href="{{ route('social-media-share') }}" class="dropdown-item"><span class="menu-text">Be Part of Us</span></a></li>
 
-          {{-- <li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-3342" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3342 nav-item"><a href="{{ route('contact') }}" class="dropdown-item"><span class="menu-text">Contact Us</span></a></li> --}}
 
       <li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-3341" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3341 nav-item"><a href="{{ route('Donate-Us') }}" class="dropdown-item"><span class="menu-text">Donate Us</span></a></li>
 
@@ -125,4 +123,115 @@
           </div>
       </div>
   </div>
+</header> --}}
+
+
+{{-- =========================Old Header End========================= --}}
+
+<header>
+    <div class="header-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 d-none d-lg-block left-item">
+                    <ul>
+                        <li><i class="fas fa-envelope-square"></i> dtmquranacademy@gmail.com</li>
+                        <li><i class="fas fa-phone-square"></i> +88 01915 054 987</li>
+                    </ul>
+                </div>
+                <div class="col-lg-5 col-md-12 right-item">
+                    <ul>
+                        <li><a class="text-light" href="{{ route('all.courses') }}">Our Courses</a></li>
+                        {{-- <li><a class="text-light" href="#">Share</a></li> --}}
+                        <li><a class="text-light" href="{{ route('student-signup') }}">Register</a></li>
+                        <li><a class="text-light" href="{{ route('how-to-register') }}">Log In</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="nav-head" class="header-nav">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2 col-md-12 nav-img">
+                    <a href="{{ route('home') }}"><img src="{{asset('assets-new-frontend')}}/assets/images/logo/DTMQA.png" alt="logo"></a>
+                    <a data-toggle="collapse" data-target="#menu" href="#menu"><i
+                            class="fas d-block d-lg-none small-menu fa-bars"></i></a>
+                </div>
+                <div id="menu" class="col-lg-10 d-none d-lg-block nav-item">
+                    <ul>
+                        <li><a href="{{ route('home') }}">Home</a></li>
+
+                        <li class="has-dropdown has-submenu">
+                            <a href="#">About <i class="fa-solid fa-angle-down"></i></a>
+                            <ul class="dropdown submenu">
+                                <li class="dropdown-item"><a href="{{ route('for-whom') }}">For Whom</a></li>
+                                <li class="dropdown-item"><a href="{{ route('sfp') }}">Some Features Of Our Program</a></li>
+                                <li class="dropdown-item"><a href="{{ route('ilq') }}">Importance Of Learning Quran</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="has-dropdown has-submenu">
+                            <a href="#">Quran Campus (Male) <i class="fa-solid fa-angle-down"></i></a>
+                            <ul class="dropdown submenu">
+                                <li class="dropdown-item has-dropdown has-submenu"><a href="#">Quran Campus (Kids) <i
+                                            class="fa-solid fa-angle-down"></i></a>
+                                    <ul class="dropdown submenu">
+                                        <li class="dropdown-item"><a href="{{ route('quran-reading-course') }}">Quran Reading Course</a></li>
+                                        <li class="dropdown-item"><a href="{{ route('quranic-arabic-course') }}">Quranic Arabic Course</a></li>
+                                        <li class="dropdown-item"><a href="{{ route('quran-memorization-course') }}">Quran Memorization Course</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown-item has-dropdown has-submenu"><a href="#">Quran Campus (Adults) <i
+                                            class="fa-solid fa-angle-down"></i></a>
+                                    <ul class="dropdown submenu sub-top submenu_top">
+                                        <li class="dropdown-item"><a href="{{ route('quran-reading-course-a') }}">Quran Reading Course</a></li>
+                                        <li class="dropdown-item"><a href="{{ route('quranic-arabic-course-a') }}">Quranic Arabic Course</a></li>
+                                        <li class="dropdown-item"><a href="{{ route('quran-memorization-course-a') }}">Quran Memorization Course</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="has-dropdown has-submenu"><a href="#">Quran Campus (Female) <i class="fa-solid fa-angle-down"></i></a>
+                            <ul class="dropdown submenu">
+                                <li class="dropdown-item has-dropdown has-submenu"><a href="#">Quran Campus (Kids) <i
+                                            class="fa-solid fa-angle-down"></i></a>
+                                    <ul class="dropdown submenu">
+                                        <li class="dropdown-item"><a href="{{ route('quran-reading-course-f') }}">Quran Reading Course</a></li>
+                                        <li class="dropdown-item"><a href="{{ route('quranic-arabic-course-f') }}">Quranic Arabic Course</a></li>
+                                        <li class="dropdown-item"><a href="{{ route('quran-memorization-course-f') }}">Quran Memorization Course</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown-item has-dropdown has-submenu"><a href="#">Quran Campus (Adults) <i
+                                            class="fa-solid fa-angle-down"></i></a>
+                                    <ul class="dropdown submenu submenu_top">
+                                        <li class="dropdown-item"><a href="{{ route('quran-reading-course-f-a') }}">Quran Reading Course</a></li>
+                                        <li class="dropdown-item"><a href="{{ route('quranic-arabic-course-f-a') }}">Quranic Arabic Course</a></li>
+                                        <li class="dropdown-item"><a href="{{ route('quran-memorization-course-f-a') }}">Quran Memorization Course</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="has-dropdown has-submenu"><a href="#">Teachers <i class="fa-solid fa-angle-down"></i></a>
+                            <ul class="dropdown submenu">
+                                <li class="dropdown-item"><a href="{{ route('teacher.list') }}">Teacher's Male</a></li>
+                                <li class="dropdown-item"><a href="{{ route('femaleteacher.list') }}">Teacher's Female</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="{{ route('online-class') }}">Online Class</a></li>
+                        <li class="has-dropdown has-submenu"><a href="#">More <i class="fa-solid fa-angle-down"></i></a>
+                            <ul class="dropdown submenu">
+                                <li class="dropdown-item"><a href="{{ route('teacher-login-page') }}">Teacher Login</a></li>
+                                <li class="dropdown-item"><a href="{{ route('how-to-register') }}">Student Login</a></li>
+                                <li class="dropdown-item"><a href="{{ route('contact') }}">Contact Us</a></li>
+                                <li class="dropdown-item"><a href="{{ route('Basics-of-Islam-Campus') }}">Basics Of Islam Campus</a></li>
+                                <li class="dropdown-item"><a href="{{ route('social-media-share') }}">Be Part Of Us</a></li>
+                                <li class="dropdown-item"><a href="{{ route('Donate-Us') }}">Donate Us</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 </header>

@@ -1,4 +1,4 @@
-@extends('frontend.master')
+{{-- @extends('frontend.master')
 @section('content')
 <div id="content-websdevusa" class="site-content-websdevusa space stop ngdc.ac.bd-page content-area">
     <div class="container main-area-bg">
@@ -6,8 +6,8 @@
             <div class="col-md-9">
                 <article>
                     <div class="entry">
-                
-                        <h1 class="heading mt-3">Some Features of our Program 
+
+                        <h1 class="heading mt-3">Some Features of our Program
                         </h1>
                         <br>
                         <div>
@@ -15,12 +15,12 @@
                         </div>
                     </div>
                 </article>
-            </div>					
+            </div>
         <!-- End News section -->
         <!-- content-left -->
     <!-- End Column 8 -->
             @include('frontend.include.side-bar')
-</div>		
+</div>
 </div>
 </section>
 
@@ -64,4 +64,39 @@
 </div>
 </div>
 </section>
+@endsection --}}
+
+
+@extends('frontend.master')
+
+@section('content')
+
+
+    <!--  ************************* Page Title Starts Here ************************** -->
+    <div class="page-nav no-margin row">
+        <div class="container">
+            <div class="row">
+                <h2>Dream to Memorize Quran Academy</h2>
+                <p class="mb-3">Learning Quran at Home</p>
+                <ul>
+                    <li><a href="{{ route('home') }}"><i class="fas fa-home"></i> Home</a></li>
+                    <li><i class="fas fa-angle-double-right"></i> Some Features Of Our Program</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ######## Some Features Of Our Program Information Starts Here ####### -->
+
+    <div class="row contact-rooo no-margin">
+        <div class="container">
+            <div style="padding:20px">
+                <h2>Some Features Of Our Program</h2>
+                <div class="mt-lg-5">
+                    {!! $about->sfp !!}
+                </div>
+            </div>
+        </div>
+    </div>
+
 @endsection

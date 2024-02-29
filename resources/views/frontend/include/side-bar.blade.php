@@ -26,8 +26,8 @@
 <li id="menu-item-3520" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3520"><a href="https://assunnahfoundation.org/">assunnahfoundation.org</a></li>
 <li id="menu-item-3520" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3520"><a href="https://gtaf.org/">gtaf.org</a></li>
 </ul></div></div>
-<div id="nav_menu-4" class="sidebar-widget widget widget_nav_menu"><div class="widget-heading"><h3 class="widget-title">Sidebar Menu</h3></div><div class="menu-sidebar-menu-container"><ul id="menu-sidebar-menu" class="menu"><li id="menu-item-3496" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3496"><a target="_blank" rel="noopener" href="#">Student Log in</a></li>
-<li id="menu-item-3497" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3497"><a target="_blank" rel="noopener" href="#">Teacher Log in</a></li>
+<div id="nav_menu-4" class="sidebar-widget widget widget_nav_menu"><div class="widget-heading"><h3 class="widget-title">Sidebar Menu</h3></div><div class="menu-sidebar-menu-container"><ul id="menu-sidebar-menu" class="menu"><li id="menu-item-3496" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3496"><a target="_blank" rel="noopener" href="{{ route('student-login-panel') }}">Student Log in</a></li>
+<li id="menu-item-3497" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3497"><a target="_blank" rel="noopener" href="{{ route('teacher-login-page') }}">Teacher Log in</a></li>
 <li id="menu-item-3498" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3498"><a target="_blank" rel="noopener" href="#">e-Payment</a></li>
 <li id="menu-item-3499" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3499"><a target="_blank" rel="noopener" href="#">e-Library</a></li>
 </ul></div></div>

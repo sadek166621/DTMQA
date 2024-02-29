@@ -203,6 +203,7 @@ class CourseteachersController extends Controller
 
         $course = Course::create([
             'name' => $request->name,
+            'amount' => $request->amount,
             'status' => $request->status
         ]);
 
@@ -263,6 +264,7 @@ class CourseteachersController extends Controller
 
             $course->update([
                 'name' => $request->name,
+                'amount' => $request->amount,
                 'status' => $request->status
             ]);
 

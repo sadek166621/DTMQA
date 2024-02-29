@@ -21,6 +21,7 @@
                 <tr>
                   <th>SL</th>
                   <th>Name</th>
+                  <th>Code</th>
                   <th>Registration Date/time</th>
                   <th>Gender</th>
                   <th>Like to Study</th>
@@ -35,6 +36,7 @@
                     <tr>
                       <td>{{ $key+1 }}</td>
                       <td>{{ $studentreg->name }}</td>
+                      <td>{{ $studentreg->code->code }}</td>
                       <td>
                         {{ $studentreg->created_at }}
                       </td>
@@ -53,7 +55,10 @@
 
 
                       <td>
-                    <a href="{{ route('admin.applied-student.details', $studentreg->id) }}"><i class="fas fa-eye"></i> View</a>
+                    <a href="{{ route('admin.applied-student.details', $studentreg->id) }}"><i class="fas fa-eye"></i></a>
+                    <a href="{{ route('admin.applied-student.edit', $studentreg->id) }}"><i class="fas fa-edit" style="color: black"></i></a>
+                    <a href="{{ route('admin.applied-student.delete', $studentreg->studentId) }}" onclick="if (!confirm('Are you sure?')) { return false }"><i class="fas fa-trash" style="color: red"></i></a>
+
                       </td>
                     </tr>
                   @endforeach

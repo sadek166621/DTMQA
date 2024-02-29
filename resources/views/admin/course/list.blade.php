@@ -24,6 +24,7 @@
                 <tr>
                   <th>SL</th>
                   <th>Name</th>
+                  <th>Amount</th>
                   <th>Status</th>
                   <th>Action</th>
                 </tr>
@@ -34,6 +35,7 @@
                     <tr>
                       <td>{{ $key+1 }}</td>
                       <td>{{ $course->name }}</td>
+                      <td>{{ $course->amount }}</td>
                       <td>
                         @if ($course->status == 1)
                           <span class="badge bg-success">Active</span>
@@ -43,7 +45,7 @@
                       </td>
                       <td>
                         <a href="{{ route('admin.course.edit', $course->id) }}" class="btn btn-info"><i class="fas fa-edit"></i> Edit</a>
-                        <a href="{{ route('admin.course.delete', $course->id) }}" class="btn btn-danger"><i class="fas fa-trash"></i> Delete</a>
+                        <a href="{{ route('admin.course.delete', $course->id) }}"  onclick="if (!confirm('Are you sure?')) { return false }" class="btn btn-danger"><i class="fas fa-trash"></i> Delete</a>
                       </td>
                     </tr>
                   @endforeach
@@ -64,3 +66,12 @@
   <!-- /.container-fluid -->
 </section>
 @endsection
+@push('js')
+<script>
+    function confirmDelete() {
+        // Display a confirmation dialog
+        var result = confirm("Are you sure you want to delete?");
+        // Check if the user clicked "OK"
+    }
+</script>
+@endpush

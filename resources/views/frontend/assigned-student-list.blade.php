@@ -1,4 +1,4 @@
-@extends('frontend.master')
+{{-- @extends('frontend.master')
 @section('content')
 <style>
     form {
@@ -91,4 +91,57 @@
 </div>
 </div>
 </section>
+@endsection --}}
+
+@extends('frontend.master')
+@section('content')
+<!--  ************************* Page Title Starts Here ************************** -->
+<div class="page-nav no-margin row">
+    <div class="container">
+        <div class="row">
+            <h2>Dream to Memorize Quran Academy</h2>
+            <p class="mb-3">Learning Quran at Home</p>
+            <ul>
+                <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+                <li><i class="fas fa-angle-double-right"></i> View Students</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- ######## View Students Information Starts Here ####### -->
+
+<div class="row contact-rooo no-margin">
+    <div class="container">
+        <div class="table-responsive">
+            <h6>Batch Name: {{ $batches->title }} </h6>
+            <h6>Teacher Name: {{ $batches->teacher->name }}</h6>
+
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">SL No</th>
+                        <th scope="col">Student Name</th>
+                        <th scope="col">Phone</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (count($views) > 0)
+                          @foreach ($views as $key => $view)
+                            <tr>
+                                <td>{{ $key+1 }}</td>
+                                <td>{{ $view->name }}</td>
+                                <td>{{ $view->phone_number }}</td>
+                            </tr>
+                        @endforeach
+                    @else
+                        <tr><td colspan="5" class="text-center">No Student found</td></tr>
+                    @endif
+                    </tbody>
+            </table>
+            <a href="{{ route('teacher-dashboard') }}" style="float: right"><i class="fas fa-arrow-left"></i></a>
+
+        </div>
+    </div>
+</div>
 @endsection
